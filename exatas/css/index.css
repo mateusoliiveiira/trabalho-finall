@@ -26,3 +26,66 @@ h1{
     width: 100%;
     height: 450px;
   }
+
+  .botao-materia {
+    width: 80vw;
+    background-color: #004AAD; /* Cor azul */
+    color: white; /* Cor do texto */
+    padding: 35px 0;
+    border: none;
+    border-radius: 2px;
+    text-align: center;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 300ms; 
+  
+  }
+  
+  .botao-materia:hover {
+    background-color: #005dc0; /* Cor azul escuro no hover */
+    transition: 300ms;
+  }
+  
+  .botao-materia:active {
+    background-color: #004093;
+    transition: 100ms;
+  }
+  
+  .container-botao-materia {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .botao-adicionar-materia{
+    width: 45vw;
+    background-color: #b9b9b9; /* Cor azul */
+    color: rgb(255, 255, 255); /* Cor do texto */
+    padding: 25px 0;
+    border: none;
+    border-radius: 2px;
+    text-align: center;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 300ms; 
+  
+  }
+  
+  .botao-adicionar-materia:hover {
+    background-color: #cdcdcd; /* Cor azul escuro no hover */
+    transition: 300ms;
+  }
+  
+  .botao-adicionar-materia:active {
+    background-color: #919191;
+    transition: 100ms;
+  }
+  
+  .container-botao-adicionar-materia {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  

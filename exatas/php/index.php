@@ -43,6 +43,14 @@
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
 </main>
 
+<div class="container-botao-materia">
+<button class="botao-materia">MATEMATICA</button>
+</div>
+
+<div class="container-botao-adicionar-materia">
+<button class="botao-adicionar-materia">+ Nova Matéria</button>
+</div>
+
 <!---------------->
 
 <!---------Fim--------------->
