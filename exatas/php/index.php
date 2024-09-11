@@ -47,6 +47,10 @@
 <button class="botao-materia">MATEMATICA</button>
 </div>
 
+<div class="container-botao-adicionar-materia">
+<button class="botao-adicionar-materia">+ Nova Matéria</button>
+</div>
+
 <!---------------->
 
 <!---------Fim--------------->
