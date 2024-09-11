@@ -13,5 +13,5 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 }
 
 // Inclui a view para exibir o formulário
-include 'C:\xampp\htdocs\trabalho-finall\exatas\MVC\Views\ViewsMateria.php';
+
 ?>

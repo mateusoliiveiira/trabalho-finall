@@ -6,14 +6,17 @@ class ExemploModel {
         $this->pdo = $pdo;
     }
 
-    public function cadastrar($oquee, $ondeusa, $exemplo, $formula) {
-        $sql = "INSERT INTO matematica (oquee, ondeusa, exemplo, formula) VALUES (:oquee, :ondeusa, :exemplo, :formula)";
+    public function cadastrar($oquee, $ondeusa, $exemplo, $uploadFile) {
+        $sql = "INSERT INTO matematica(oquee, ondeusa, exemplo, formula) VALUES (:oquee, :ondeusa, :exemplo, :formula)";
         $stmt = $this->pdo->prepare($sql);
+
         $stmt->bindParam(':oquee', $oquee);
         $stmt->bindParam(':ondeusa', $ondeusa);
         $stmt->bindParam(':exemplo', $exemplo);
-        $stmt->bindParam(':formula', $formula);
+        $stmt->bindParam(':formula', $uploadFile);
+
         return $stmt->execute();
     }
 }
 ?>
+

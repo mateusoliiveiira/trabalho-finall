@@ -13,12 +13,12 @@ class ExemploController {
             $exemplo = $_POST['exemplo'];
             $formula = $_FILES['formula'];
 
-            $uploadDir = '../uploads';
+            $uploadDir = 'C:\xampp\htdocs\trabalho-finall\exatas\uploads';
             $uploadFile = $uploadDir . basename($formula['name']);
 
             if (move_uploaded_file($formula['tmp_name'], $uploadFile)) {
                 if ($this->model->cadastrar($oquee, $ondeusa, $exemplo, $uploadFile)) {
-                    header('Location: cadastrar.php?sucesso=1');
+                    header('Location: ../MVC/Views/ViewsMateria.php');
                     exit;
                 } else {
                     echo "Erro ao salvar os dados no banco de dados.";
