@@ -11,20 +11,20 @@
 
 <!---------Começo------------>
 <header>
-<h1>Materia Em Ação</h1>
+<h1 class="titulo">AprendeFácil</h1>
 </header>
 <!---------------->
 
 
 <!---------MeiO-------------->
 <main>
-
+<img class="banner"src="../img/backto.png" >
 
 <!----------------CARROSSEL------------------------->
 </main>
-
+<br>
 <div class="container-botao-materia">
-<a href="matematica.php" class="botao-materia">MATEMATICA</abutton></a>
+<a href="matematica.php" class="botao-materia">Matematica</abutton></a>
 </div>
 
 <div class="container-botao-adicionar-materia">
@@ -34,10 +34,7 @@
 <!---------------->
 
 <!---------Fim--------------->
-<footer>
 
-.
-</footer>
 <!------------------>
 </body>
 </html>
