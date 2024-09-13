@@ -13,7 +13,7 @@ class ExemploController {
             $exemplo = $_POST['exemplo'];
             $formula = $_FILES['formula'];
 
-            $uploadDir = 'C:\xampp\htdocs\trabalho-finall\exatas\uploads';
+            $uploadDir = './uploads';
             $uploadFile = $uploadDir . basename($formula['name']);
 
             if (move_uploaded_file($formula['tmp_name'], $uploadFile)) {
