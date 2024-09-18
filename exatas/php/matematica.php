@@ -12,24 +12,36 @@ try {
     die("Erro ao conectar: " . $e->getMessage());
 }
 
-// Função para listar todos os termos com materia_id = 5
-function listarTermosPorMateria($pdo, $materia_id) {
+// Função para listar termos com base em materia_id e nome
+function listarTermos($pdo, $materia_id, $nome = '') {
     $sql = 'SELECT id, nome, oquee, ondeusa, exemplo, formula
             FROM termos
-            WHERE materia_id = :materia_id';
+            WHERE materia_id = :materia_id
+            AND nome LIKE :nome';
     $stmt = $pdo->prepare($sql);
     
     try {
-        $stmt->execute(['materia_id' => $materia_id]);
+        $stmt->execute([
+            'materia_id' => $materia_id,
+            'nome' => "%$nome%"
+        ]);
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     } catch (PDOException $e) {
         die("Erro na consulta: " . $e->getMessage());
     }
 }
 
-// Busca os termos com materia_id = 5
+// Inicializar variáveis
 $materia_id = 5;
-$termos = listarTermosPorMateria($pdo, $materia_id);
+$termos = [];
+$nome = '';
+
+// Verificar se o formulário de pesquisa foi enviado
+if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['nome'])) {
+    $nome = $_POST['nome'];
+    // Buscar termos com base no nome fornecido
+    $termos = listarTermos($pdo, $materia_id, $nome);
+}
 ?>
 
 <!DOCTYPE html>
@@ -40,37 +52,44 @@ $termos = listarTermosPorMateria($pdo, $materia_id);
     <title>Termos de Matemática</title>
 </head>
 <body>
-    
+    <h1>Termos da Matéria com ID <?php echo htmlspecialchars($materia_id); ?></h1>
 
-    <?php if (!empty($termos)) { ?>
-        <table border="1">
-            <thead>
-                <tr>
-                    <th>ID</th>
-                    <th>Nome</th>
-                    <th>O que é</th>
-                    <th>Onde Usa</th>
-                    <th>Exemplo</th>
-                    <th>Fórmula</th>
-                </tr>
-            </thead>
-            <tbody>
-                <?php foreach ($termos as $termo) { ?>
+    <!-- Formulário de pesquisa -->
+    <form action="" method="POST">
+        <label for="nome">Buscar pelo Nome do Termo:</label>
+        <input type="text" id="nome" name="nome" value="<?php echo htmlspecialchars($nome); ?>">
+        <button type="submit">Pesquisar</button>
+    </form>
+
+    <?php if (!empty($termos) || $nome !== '') { ?>
+        <?php if (!empty($termos)) { ?>
+            <table border="1">
+                <thead>
                     <tr>
-                        <td><?php echo htmlspecialchars($termo['id']); ?></td>
-                        <td><?php echo htmlspecialchars($termo['nome']); ?></td>
-                        <td><?php echo htmlspecialchars($termo['oquee']); ?></td>
-                        <td><?php echo htmlspecialchars($termo['ondeusa']); ?></td>
-                        <td><?php echo htmlspecialchars($termo['exemplo']); ?></td>
-                        <td><?php echo htmlspecialchars($termo['formula']); ?></td>
+                        <th>ID</th>
+                        <th>Nome</th>
+                        <th>O que é</th>
+                        <th>Onde Usa</th>
+                        <th>Exemplo</th>
+                        <th>Fórmula</th>
                     </tr>
-                <?php } ?>
-            </tbody>
-        </table>
-    <?php } else { ?>
-        <p>Nenhum termo encontrado para a matéria com ID <?php echo htmlspecialchars($materia_id); ?>.</p>
+                </thead>
+                <tbody>
+                    <?php foreach ($termos as $termo) { ?>
+                        <tr>
+                            <td><?php echo htmlspecialchars($termo['id']); ?></td>
+                            <td><?php echo htmlspecialchars($termo['nome']); ?></td>
+                            <td><?php echo htmlspecialchars($termo['oquee']); ?></td>
+                            <td><?php echo htmlspecialchars($termo['ondeusa']); ?></td>
+                            <td><?php echo htmlspecialchars($termo['exemplo']); ?></td>
+                            <td><?php echo htmlspecialchars($termo['formula']); ?></td>
+                        </tr>
+                    <?php } ?>
+                </tbody>
+            </table>
+        <?php } else { ?>
+            <p>Nenhum termo encontrado para a matéria com ID <?php echo htmlspecialchars($materia_id); ?>.</p>
+        <?php } ?>
     <?php } ?>
-
-    <a href="cadastrar-matematica.php">Cadastrar Termo</a>
 </body>
 </html>

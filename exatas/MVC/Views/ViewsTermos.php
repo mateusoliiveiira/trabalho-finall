@@ -12,7 +12,7 @@
         <p><?php echo htmlspecialchars($mensagem); ?></p>
     <?php } ?>
 
-    <form action="e" method="POST">
+    <form action="" method="POST">
         <label for="nome">Nome do Termo:</label>
         <input type="text" id="nome" name="nome" required>
 
