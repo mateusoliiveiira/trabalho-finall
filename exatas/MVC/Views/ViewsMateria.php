@@ -34,26 +34,32 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['nome'])) {
     // Gerar mensagem de sucesso e link para a nova matéria
     $mensagem = "Matéria cadastrada com sucesso! <a href='../../../php/materia.php?id=$materia_id'>Ver matéria</a>";
 }
-?>
 
+require_once '../../php/roteador-materia.php';
+?>
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cadastro de Matéria</title>
+    <title>Nova Matéria</title>
+    <link rel="stylesheet" href="../../css/style.css">
 </head>
 <body>
-    <h1>Cadastro de Matéria</h1>
 
-    <?php if (isset($mensagem)) { ?>
+<?php if (isset($mensagem)) { ?>
         <p><?php echo $mensagem; ?></p>
     <?php } ?>
-
-    <form action="" method="POST">
-        <label for="nome">Nome da Matéria:</label>
-        <input type="text" id="nome" name="nome" required>
-        <button type="submit">Cadastrar</button>
-    </form>
+     
+    <div class="container-admateria">
+        <div class="form-box-admateria">
+            <h1 class="titulo-admateria">Nova matéria</h1>
+            <form action="" method="POST" class="form-admateria">
+                <input type="text" id="nome" name="nome" placeholder="Adicionar matéria" class="input-admateria" required>
+                <button type="submit" class="btn-admateria">Anexar</button>
+            </form>
+        </div>
+        <button class="list-btn-admateria">Listar</button>
+    </div>
 </body>
 </html>

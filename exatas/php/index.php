@@ -49,7 +49,7 @@ $materias = listarMaterias($pdo);
 
     <!-- Container para botões de matérias -->
     <div class="container-materias">
-        <h2>Matérias Disponíveis:</h2>
+      
         
         <?php if (!empty($materias)) { ?>
             <?php foreach ($materias as $materia) { ?>
