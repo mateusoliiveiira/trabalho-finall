@@ -9,7 +9,7 @@ require_once '../../php/roteador-materia.php';
     <title>Cadastro</title>
 </head>
 <body>
-    <h1>Cadastro de Nome</h1>
+    <h1>Cadastro de Materia</h1>
 
     <?php if (isset($mensagem)) { ?>
         <p><?php echo $mensagem; ?></p>

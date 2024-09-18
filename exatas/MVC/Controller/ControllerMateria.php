@@ -3,7 +3,7 @@ require_once 'C:\xampp\htdocs\trabalho-finall\exatas\MVC\Model\ModelMateria.php'
 
 class CadastroController {
     public function index() {
-        require_once '/MVC/Views/ViewsMateria.php';
+        require_once 'C:\xampp\htdocs\trabalho-finall\exatas\MVC\Views\ViewsMateria.php';
     }
 
     public function salvar() {

@@ -33,14 +33,14 @@ function listarTermos($pdo, $materia_id, $nome = '') {
 
 // Inicializar variáveis
 $materia_id = 5;
-$termos = [];
+$dados = [];
 $nome = '';
 
 // Verificar se o formulário de pesquisa foi enviado
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['nome'])) {
     $nome = $_POST['nome'];
     // Buscar termos com base no nome fornecido
-    $termos = listarTermos($pdo, $materia_id, $nome);
+    $dados = listarTermos($pdo, $materia_id, $nome);
 }
 ?>
 
@@ -48,37 +48,46 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['nome'])) {
 <html lang="pt-br">
 <head>
     <meta charset="UTF-8">
-    <title>Listar Exemplos</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Termos de Matemática</title>
 </head>
 <body>
-    <h1>Listar Exemplos</h1>
-    <table border="1">
-        <thead>
-            <tr>
-                <th>ID</th>
-                <th>O que é</th>
-                <th>Onde Usar</th>
-                <th>Exemplo</th>
-                <th>Fórmula</th>
-            </tr>
-        </thead>
-        <tbody>
-            <?php foreach ($dados as $linha): ?>
+    <h1>Termos da Matéria com ID <?php echo htmlspecialchars($materia_id); ?></h1>
+
+    <!-- Formulário de pesquisa -->
+    <form action="" method="POST">
+        <label for="nome">Buscar pelo Nome do Termo:</label>
+        <input type="text" id="nome" name="nome" value="<?php echo htmlspecialchars($nome); ?>">
+        <button type="submit">Pesquisar</button>
+    </form>
+
+    <?php if (!empty($dados)) { ?>
+        <table border="1">
+            <thead>
                 <tr>
-                    <td><?php echo htmlspecialchars($linha['id']); ?></td>
-                    <td><?php echo htmlspecialchars($linha['oquee']); ?></td>
-                    <td><?php echo htmlspecialchars($linha['ondeusa']); ?></td>
-                    <td><?php echo htmlspecialchars($linha['exemplo']); ?></td>
-                    <td>
-                        <?php if (isset($linha['formula']) && file_exists($linha['formula'])): ?>
-                            <img src="<?php echo htmlspecialchars($linha['formula']); ?>" alt="Fórmula" style="max-width: 200px; max-height: 200px;">
-                        <?php else: ?>
-                            Imagem não disponível
-                        <?php endif; ?>
-                    </td>
+                    <th>ID</th>
+                    <th>Nome</th>
+                    <th>O que é</th>
+                    <th>Onde Usa</th>
+                    <th>Exemplo</th>
+                    <th>Fórmula</th>
                 </tr>
-            <?php endforeach; ?>
-        </tbody>
-    </table>
+            </thead>
+            <tbody>
+                <?php foreach ($dados as $dado) { ?>
+                    <tr>
+                        <td><?php echo htmlspecialchars($dado['id']); ?></td>
+                        <td><?php echo htmlspecialchars($dado['nome']); ?></td>
+                        <td><?php echo htmlspecialchars($dado['oquee']); ?></td>
+                        <td><?php echo htmlspecialchars($dado['ondeusa']); ?></td>
+                        <td><?php echo htmlspecialchars($dado['exemplo']); ?></td>
+                        <td><?php echo htmlspecialchars($dado['formula']); ?></td>
+                    </tr>
+                <?php } ?>
+            </tbody>
+        </table>
+    <?php } else if ($nome !== '') { ?>
+        <p>Nenhum termo encontrado para a matéria com ID <?php echo htmlspecialchars($materia_id); ?>.</p>
+    <?php } ?>
 </body>
 </html>
