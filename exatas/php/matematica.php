@@ -48,48 +48,37 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['nome'])) {
 <html lang="pt-br">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Termos de Matemática</title>
+    <title>Listar Exemplos</title>
 </head>
 <body>
-    <h1>Termos da Matéria com ID <?php echo htmlspecialchars($materia_id); ?></h1>
-
-    <!-- Formulário de pesquisa -->
-    <form action="" method="POST">
-        <label for="nome">Buscar pelo Nome do Termo:</label>
-        <input type="text" id="nome" name="nome" value="<?php echo htmlspecialchars($nome); ?>">
-        <button type="submit">Pesquisar</button>
-    </form>
-
-    <?php if (!empty($termos) || $nome !== '') { ?>
-        <?php if (!empty($termos)) { ?>
-            <table border="1">
-                <thead>
-                    <tr>
-                        <th>ID</th>
-                        <th>Nome</th>
-                        <th>O que é</th>
-                        <th>Onde Usa</th>
-                        <th>Exemplo</th>
-                        <th>Fórmula</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <?php foreach ($termos as $termo) { ?>
-                        <tr>
-                            <td><?php echo htmlspecialchars($termo['id']); ?></td>
-                            <td><?php echo htmlspecialchars($termo['nome']); ?></td>
-                            <td><?php echo htmlspecialchars($termo['oquee']); ?></td>
-                            <td><?php echo htmlspecialchars($termo['ondeusa']); ?></td>
-                            <td><?php echo htmlspecialchars($termo['exemplo']); ?></td>
-                            <td><?php echo htmlspecialchars($termo['formula']); ?></td>
-                        </tr>
-                    <?php } ?>
-                </tbody>
-            </table>
-        <?php } else { ?>
-            <p>Nenhum termo encontrado para a matéria com ID <?php echo htmlspecialchars($materia_id); ?>.</p>
-        <?php } ?>
-    <?php } ?>
+    <h1>Listar Exemplos</h1>
+    <table border="1">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>O que é</th>
+                <th>Onde Usar</th>
+                <th>Exemplo</th>
+                <th>Fórmula</th>
+            </tr>
+        </thead>
+        <tbody>
+            <?php foreach ($dados as $linha): ?>
+                <tr>
+                    <td><?php echo htmlspecialchars($linha['id']); ?></td>
+                    <td><?php echo htmlspecialchars($linha['oquee']); ?></td>
+                    <td><?php echo htmlspecialchars($linha['ondeusa']); ?></td>
+                    <td><?php echo htmlspecialchars($linha['exemplo']); ?></td>
+                    <td>
+                        <?php if (isset($linha['formula']) && file_exists($linha['formula'])): ?>
+                            <img src="<?php echo htmlspecialchars($linha['formula']); ?>" alt="Fórmula" style="max-width: 200px; max-height: 200px;">
+                        <?php else: ?>
+                            Imagem não disponível
+                        <?php endif; ?>
+                    </td>
+                </tr>
+            <?php endforeach; ?>
+        </tbody>
+    </table>
 </body>
 </html>
