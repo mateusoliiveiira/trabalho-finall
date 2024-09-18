@@ -28,7 +28,7 @@
 </div>
 
 <div class="container-botao-adicionar-materia">
-    <a href="C:\xampp\htdocs\trabalho-finall\exatas\MVC\Views\ViewsMateria.php">
+    <a href="../MVC/Views/ViewsMateria.php">
 <button class="botao-adicionar-materia">+ Nova Matéria</button></a>
 </div>
 

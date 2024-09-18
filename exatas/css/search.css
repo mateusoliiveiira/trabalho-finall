@@ -1,0 +1,116 @@
+.botao-materia {
+    width: 80vw;
+    background-color: #004AAD; /* Cor azul */
+    color: white; /* Cor do texto */
+    padding: 35px 0;
+    border: none;
+    border-radius: 2px;
+    text-align: center;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 300ms; 
+  }
+  
+  .botao-materia:hover {
+    background-color: #005dc0; /* Cor azul escuro no hover */
+    transition: 300ms;
+  }
+  
+  .botao-materia:active {
+    background-color: #004093;
+    transition: 100ms;
+  }
+  
+  .container-botao-materia {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .botao-materia a {
+    text-decoration: none;
+    color: white;
+    font-size: 30px;
+  }
+
+  /* Estilização da contêiner de busca */
+.search-container {
+    display: flex;
+    align-items: center;
+    max-width: 500px;
+    margin: 0 auto;
+    border-radius: 25px;
+    overflow: hidden;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+/* Estilização do campo de entrada */
+.search-input {
+    flex: 1;
+    border: none;
+    padding: 10px 15px;
+    font-size: 16px;
+    border-radius: 25px 0 0 25px;
+    outline: none;
+}
+
+/* Estilização do botão de busca */
+.search-button {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+    border-radius: 0 25px 25px 0;
+    transition: background-color 0.3s ease;
+}
+
+.search-button:hover {
+    background-color: #0056b3;
+}
+
+/* Estilização do contêiner do formulário */
+.form-container {
+    max-width: 500px;
+    margin: 0 auto;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    background-color: #f9f9f9;
+    display: flex;
+    flex-direction: column;
+    gap: 10px; /* Espaçamento entre os elementos */
+}
+
+/* Estilização do corpo da página */
+body {
+    margin: 0;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #f0f0f0; /* Cor de fundo clara */
+}
+
+/* Estilização do formulário de busca */
+.search-form {
+    padding: 15px;
+    border-radius: 8px;
+    display: flex;
+    width: 100%;
+    max-width: 500px; /* Largura máxima do formulário */
+}
+
+/* Estilização do campo de entrada */
+.search-input {
+    width: 100%;
+    padding: 10px;
+    border: none;
+    border-radius: 4px;
+    outline: none;
+    font-size: 16px;
+    background-color: #d6d6d6; /* Fundo branco para o campo de entrada */
+}
+

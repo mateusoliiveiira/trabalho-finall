@@ -1,0 +1,18 @@
+.header-dado {
+    position: fixed; /* Fixa o header no topo */
+    top: 0;
+    left: 0;
+    width: 100%; /* Ocupa toda a largura */
+    background-color: #004AAD;
+    color: white;
+    padding: 20px 0;
+    text-align: center;
+    z-index: 1000; /* Garante que o header fique por cima de outros elementos */
+    height: 60px; /* Aumenta a altura do header */
+    font-size: 60px;
+
+}
+
+body {
+    padding-top: 80px; /* Adiciona espaço para o conteúdo não ficar escondido atrás do header */
+}

@@ -14,7 +14,7 @@ try {
 
 // Função para salvar um novo termo
 function salvarTermo($pdo, $nome, $oquee, $ondeusa, $exemplo, $formula) {
-    $materia_id = 5; // Definido como 5
+    $materia_id = 1; // Definido como 5
     $sql = 'INSERT INTO termos (nome, materia_id, oquee, ondeusa, exemplo, formula) 
             VALUES (:nome, :materia_id, :oquee, :ondeusa, :exemplo, :formula)';
     $stmt = $pdo->prepare($sql);
@@ -56,33 +56,45 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['nome'], $_POST['oquee
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Cadastro de Termos</title>
+    <link rel="stylesheet" href="../css/cdtermo.css"> 
+    <link rel="stylesheet" href="../css/header.css"> 
 </head>
 <body>
-    <h1>Cadastro de Termos</h1>
-
+<header>  <h1>Adicionar Termo</h1>
+</header>  
     <?php if (isset($mensagem)) { ?>
         <p><?php echo htmlspecialchars($mensagem); ?></p>
     <?php } ?>
 
-    <form action="" method="POST">
-        <label for="nome">Nome do Termo:</label>
-        <input type="text" id="nome" name="nome" required>
+    <div class="container">
+        <form action="" method="POST">
+            <div class="section">
+                <div class="title">Nome do Termo:</div>
+                <input type="text" id="nome" name="nome" required>
+            </div>
 
-        <input type="hidden" name="materia_id" value="5"> <!-- Campo oculto -->
+            <div class="section">
+                <div class="title">O que é:</div>
+                <textarea id="oquee" name="oquee" required></textarea>
+            </div>
 
-        <label for="oquee">O que é:</label>
-        <textarea id="oquee" name="oquee" required></textarea>
+            <div class="section">
+                <div class="title">Onde Usa:</div>
+                <textarea id="ondeusa" name="ondeusa" required></textarea>
+            </div>
 
-        <label for="ondeusa">Onde Usa:</label>
-        <textarea id="ondeusa" name="ondeusa" required></textarea>
+            <div class="section">
+                <div class="title">Exemplo:</div>
+                <textarea id="exemplo" name="exemplo" required></textarea>
+            </div>
 
-        <label for="exemplo">Exemplo:</label>
-        <textarea id="exemplo" name="exemplo" required></textarea>
+            <div class="section">
+                <div class="title">Fórmula:</div>
+                <textarea id="formula" name="formula" required></textarea>
+            </div>
 
-        <label for="formula">Fórmula:</label>
-        <textarea id="formula" name="formula" required></textarea>
-
-        <button type="submit">Cadastrar</button>
-    </form>
+            <button type="submit">Adicionar</button>
+        </form>
+    </div>
 </body>
 </html>
