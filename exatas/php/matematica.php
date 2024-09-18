@@ -52,7 +52,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['nome'])) {
     <title>Termos de Matemática</title>
 </head>
 <body>
-    <h1>Termos da Matéria com ID <?php echo htmlspecialchars($materia_id); ?></h1>
+    <h1>Termos da Matéria com ID <?php echo htmlspecialchars($materia_id); ?> é Matematica</h1>
 
     <!-- Formulário de pesquisa -->
     <form action="" method="POST">
@@ -87,7 +87,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['nome'])) {
             </tbody>
         </table>
     <?php } else if ($nome !== '') { ?>
-        <p>Nenhum termo encontrado para a matéria com ID <?php echo htmlspecialchars($materia_id); ?>.</p>
+        <p>Nenhum termo encontrado para a matéria com ID <?php echo htmlspecialchars($materia_id); ?></p>
     <?php } ?>
+    <a href="cadastrar-matematica.php">Cadastrar Novo Termo</a>
 </body>
 </html>
