@@ -1,22 +1,27 @@
 <?php
-class ExemploModel {
+class Cadastro {
     private $pdo;
 
-    public function __construct($pdo) {
-        $this->pdo = $pdo;
+    public function __construct() {
+        // Conectar ao banco de dados
+        $host = 'localhost';
+        $dbname = 'exatas';
+        $username = 'root';
+        $password = '';
+
+        try {
+            $this->pdo = new PDO("mysql:host=$host;dbname=$dbname", $username, $password);
+            $this->pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+        } catch (PDOException $e) {
+            echo 'Erro: ' . $e->getMessage();
+        }
     }
 
-    public function cadastrar($oquee, $ondeusa, $exemplo, $uploadFile) {
-        $sql = "INSERT INTO matematica(oquee, ondeusa, exemplo, formula) VALUES (:oquee, :ondeusa, :exemplo, :formula)";
+    public function salvar($nome) {
+        $sql = "INSERT INTO materias (nome) VALUES (:nome)";
         $stmt = $this->pdo->prepare($sql);
-
-        $stmt->bindParam(':oquee', $oquee);
-        $stmt->bindParam(':ondeusa', $ondeusa);
-        $stmt->bindParam(':exemplo', $exemplo);
-        $stmt->bindParam(':formula', $uploadFile);
-
-        return $stmt->execute();
+        $stmt->bindParam(':nome', $nome);
+        $stmt->execute();
     }
 }
 ?>
-
