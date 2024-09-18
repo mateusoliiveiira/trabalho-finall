@@ -65,7 +65,7 @@ $materias = listarMaterias($pdo);
     </div>
 
     <div class="container-botao-adicionar-materia">
-        <a href="../MVC/Views/ViewsMateria.php">
+        <a href="cadastrar-materia.php">
             <button class="botao-adicionar-materia">+ Nova Matéria</button>
         </a>
     </div>
