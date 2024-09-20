@@ -65,5 +65,43 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['nome'])) {
 <div class="container-botao-materia">
 <button class="botao-materia"><a href="cadastrar-matematica.php">+ Adicionar Termo</a></button>
 </div>
+    <h1>Termos da Matéria com ID <?php echo htmlspecialchars($materia_id); ?> é Matematica</h1>
+
+    <!-- Formulário de pesquisa -->
+    <form action="" method="POST">
+        <label for="nome">Buscar pelo Nome do Termo:</label>
+        <input type="text" id="nome" name="nome" value="<?php echo htmlspecialchars($nome); ?>">
+        <button type="submit">Pesquisar</button>
+    </form>
+
+    <?php if (!empty($dados)) { ?>
+        <table border="1">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Nome</th>
+                    <th>O que é</th>
+                    <th>Onde Usa</th>
+                    <th>Exemplo</th>
+                    <th>Fórmula</th>
+                </tr>
+            </thead>
+            <tbody>
+                <?php foreach ($dados as $dado) { ?>
+                    <tr>
+                        <td><?php echo htmlspecialchars($dado['id']); ?></td>
+                        <td><?php echo htmlspecialchars($dado['nome']); ?></td>
+                        <td><?php echo htmlspecialchars($dado['oquee']); ?></td>
+                        <td><?php echo htmlspecialchars($dado['ondeusa']); ?></td>
+                        <td><?php echo htmlspecialchars($dado['exemplo']); ?></td>
+                        <td><?php echo htmlspecialchars($dado['formula']); ?></td>
+                    </tr>
+                <?php } ?>
+            </tbody>
+        </table>
+    <?php } else if ($nome !== '') { ?>
+        <p>Nenhum termo encontrado para a matéria com ID <?php echo htmlspecialchars($materia_id); ?></p>
+    <?php } ?>
+    <a href="cadastrar-matematica.php">Cadastrar Novo Termo</a>
 </body>
 </html>
