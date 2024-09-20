@@ -49,12 +49,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['materia'])) {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Nova Matéria</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="../css/criarmateria.css">
     <link rel="stylesheet" href="../css/header.css">
 </head>
 <body>
     <header>
-        <h1>.</h1>
+        <h1 class="titulo">Adicionar Matéria</h1>
     </header>
     <div class="container-admateria">
         <div class="form-box-admateria">

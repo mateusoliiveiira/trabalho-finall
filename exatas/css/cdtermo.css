@@ -30,8 +30,8 @@ body {
     background-color: #004AAD;
     color: white;
     padding: 10px;
-    font-weight: bold;
     text-align: left;
+    font-size: 30px;
 }
 
 textarea, input[type="text"], input[type="file"] {
@@ -41,6 +41,7 @@ textarea, input[type="text"], input[type="file"] {
     margin-top: 5px;
     border-radius: 1px;
     border: none;
+    font-size: 25px;
 }
 
 textarea:focus, input[type="text"]:focus, input[type="file"]:focus {
@@ -51,13 +52,13 @@ textarea:focus, input[type="text"]:focus, input[type="file"]:focus {
 button {
     background-color: #004AAD;
     color: white;
-    width: 100px;
     padding: 10px;
     border: none;
     border-radius: 1px;
     cursor: pointer;
     display: block; /* Garante que o botão seja tratado como um bloco */
     margin: 0 auto; /* Centraliza horizontalmente */
+    font-size: 40px;
 }
 
 
