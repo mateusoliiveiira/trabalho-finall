@@ -1,0 +1,80 @@
+body {
+    background-color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.container-admateria {
+    text-align: center;
+}
+
+.form-box-admateria {
+    margin-top: 70px;
+    background-color: #0052a0;
+    padding: 50px 30px;
+    width: 400px;
+    height: 300px;
+    border-radius: 1px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.titulo-admateria {
+    color: white;
+    margin-bottom: 30px;
+    font-size: 40px;
+}
+
+.form-admateria {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    flex-grow: 1;
+}
+
+.input-admateria {
+    padding: 15px;
+    margin-bottom: 20px;
+    border: none;
+    border-radius: 1px;
+    background-color: #d9e4f1;
+    font-size: 16px;
+}
+
+.btn-admateria {
+    background-color: white;
+    color: black;
+    border: none;
+    padding: 10px;
+    width: 100px;
+    align-self: center;
+    border-radius: 1px;
+    cursor: pointer;
+    font-weight: bold;
+    font-size: 16px;
+}
+
+.btn-admateria:hover {
+    background-color: #ececec;
+    transition: 150ms;
+
+}
+
+.list-btn-admateria {
+    background-color: #0052a0;
+    color: white;
+    border: none;
+    padding: 10px 30px;
+    border-radius: 1px;
+    margin-top: 30px;
+    cursor: pointer;
+    font-weight: bold;
+    font-size: 16px;
+}
+
+.list-btn-admateria:hover {
+    background-color: #004080;
+    transition: 150ms;
+}

@@ -61,52 +61,27 @@ if (isset($_GET['id'])) {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../css/search.css">
+    <link rel="stylesheet" href="../css/header.css">
     <title><?php echo htmlspecialchars($dados['materia']['nome']); ?></title>
 </head>
-<body>
-    <h1>Matéria: <?php echo htmlspecialchars($dados['materia']['nome']); ?></h1>
-    
-    <h2>Termos Associados:</h2>
-    
-    <!-- Formulário de pesquisa -->
-    <form action="" method="POST">
-        <label for="pesquisar_nome">Buscar Termos:</label>
-        <input type="text" id="pesquisar_nome" name="pesquisar_nome" value="<?php echo htmlspecialchars($nome); ?>">
-        <button type="submit">Pesquisar</button>
-    </form>
+<body background="../img/fundo.png" >
+    <header>
+        <h1>Matéria: <?php echo htmlspecialchars($dados['materia']['nome']); ?></h1>
+    </header>
 
-    <?php if ($nome !== '' && !empty($dados['termos'])) { ?>
-        <table border="1">
-            <thead>
-                <tr>
-                    <th>ID</th>
-                    <th>Nome do Termo</th>
-                    <th>O que é</th>
-                    <th>Onde Usa</th>
-                    <th>Exemplo</th>
-                    <th>Fórmula</th>
-                </tr>
-            </thead>
-            <tbody>
-                <?php foreach ($dados['termos'] as $termo) { ?>
-                    <tr>
-                        <td><?php echo htmlspecialchars($termo['id']); ?></td>
-                        <td><?php echo htmlspecialchars($termo['nome']); ?></td>
-                        <td><?php echo htmlspecialchars($termo['oquee']); ?></td>
-                        <td><?php echo htmlspecialchars($termo['ondeusa']); ?></td>
-                        <td><?php echo htmlspecialchars($termo['exemplo']); ?></td>
-                        <td><?php echo htmlspecialchars($termo['formula']); ?></td>
-                    </tr>
-                <?php } ?>
-            </tbody>
-        </table>
-    <?php } elseif ($nome !== '') { ?>
-        <p>Nenhum termo encontrado para a pesquisa.</p>
-    <?php } ?>
+    <main>
+        <!-- Formulário de pesquisa -->
+        <form action="lista.php" method="POST" class="search-form">
+            <input type="hidden" name="id" value="<?php echo htmlspecialchars($id); ?>">
+            <input type="text" id="nome" name="nome" placeholder="Digite o termo..." class="search-input">
+        </form>
+    </main>
 
-    <!-- Link para cadastrar novos termos -->
-    <a href="cadastrar-termo.php?materia_id=<?php echo htmlspecialchars($id); ?>">Cadastrar Novo Termo para Esta Matéria</a>
-
-    <a href="index.php">Voltar para o índice</a>
+    <footer>
+        <div class="container-botao-materia">
+            <button class="botao-materia"><a href="cadastrar-matematica.php">+ Adicionar Termo</a></button>
+        </div>
+    </footer>
 </body>
 </html>

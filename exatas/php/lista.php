@@ -35,10 +35,12 @@ function listarTermos($pdo, $materia_id, $nome = '') {
 $materia_id = isset($_POST['materia_id']) ? $_POST['materia_id'] : 1;
 $dados = [];
 $nome = isset($_POST['nome']) ? $_POST['nome'] : '';
-
+ 
 // Buscar termos com base no nome fornecido
 if (!empty($nome)) {
     $dados = listarTermos($pdo, $materia_id, $nome);
+
+   
 }
 ?>
 
@@ -59,8 +61,6 @@ if (!empty($nome)) {
     <?php echo htmlspecialchars($dado['nome']); ?>
 </div>
 
-
-   
             <div class="accordion">
                 <div class="accordion-item">
                     <button class="accordion-header">ID</button>

@@ -45,15 +45,7 @@
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
 }
 
-/* Estilização do campo de entrada */
-.search-input {
-    flex: 1;
-    border: none;
-    padding: 10px 15px;
-    font-size: 16px;
-    border-radius: 25px 0 0 25px;
-    outline: none;
-}
+
 
 /* Estilização do botão de busca */
 .search-button {
@@ -85,28 +77,22 @@
 }
 
 /* Estilização do corpo da página */
-body {
-    margin: 0;
-    height: 100vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background-color: #f0f0f0; /* Cor de fundo clara */
-}
 
 /* Estilização do formulário de busca */
 .search-form {
-    padding: 15px;
-    border-radius: 8px;
-    display: flex;
-    width: 100%;
-    max-width: 500px; /* Largura máxima do formulário */
+  display: flex;
+  width: 100%;
+  max-width: 500px;
+  padding: 15px;
+  border-radius: 8px;
+  justify-content: center;
+  margin-top: -30vw;
 }
 
 /* Estilização do campo de entrada */
 .search-input {
     width: 100%;
-    padding: 10px;
+    padding: 10px 300px 10px 10px;   
     border: none;
     border-radius: 4px;
     outline: none;
@@ -114,3 +100,65 @@ body {
     background-color: #d6d6d6; /* Fundo branco para o campo de entrada */
 }
 
+main {
+  flex: 1; /* Permite que main ocupe todo o espaço disponível entre o header e o footer */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding-top: 100px; /* Espaço para o header fixo */
+  padding-bottom: 60px; /* Espaço para o footer fixo */
+}
+
+footer {
+  width: 100%;
+  background-color: #004AAD;
+  text-align: center;
+  padding: 20px 0;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  z-index: 10; /* Garante que fique por cima de outros elementos */
+}
+
+/* Estilização do botão "Adicionar Termo" */
+footer .botao-materia {
+  width: 80vw;
+  background-color: #004AAD;
+  color: white;
+  padding: 15px 0;
+  border: none;
+  border-radius: 2px;
+  font-size: 16px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+footer .botao-materia:hover {
+  background-color: #005dc0;
+}
+
+/* Estilização do link dentro do botão */
+footer .botao-materia a {
+  text-decoration: none;
+  color: white;
+  font-size: 30px;
+}
+
+/* Efeito no botão quando pressionado */
+footer .botao-materia:active {
+  background-color: #004093;
+  transition: 100ms;
+}
+
+body {
+  
+    justify-content: center;
+      align-items: center;
+      min-height: 100vh; /* Garante que a altura total seja a da janela */
+
+  
+  background-repeat: no-repeat; /* Evita que a imagem se repita */
+  background-size: cover; /* Estica a imagem para cobrir toda a área */
+  background-position: center; /* Centraliza a imagem */
+
+}

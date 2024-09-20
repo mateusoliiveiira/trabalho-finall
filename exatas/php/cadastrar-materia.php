@@ -28,13 +28,12 @@ function salvarMateria($pdo, $nome) {
 }
 
 // Verificar se o formulário foi enviado
-if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['nome'])) {
-    $nome = $_POST['nome'];
+if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['materia'])) {
+    $nome = $_POST['materia'];
 
     $materia_id = salvarMateria($pdo, $nome);
     
     if ($materia_id) {
-        // Definir a variável de sessão para indicar que o cadastro foi feito
         $_SESSION['materia_cadastrada'] = true;
         $_SESSION['materia_id'] = $materia_id; // Armazenar o ID da matéria
         $mensagem = "Matéria cadastrada com sucesso!";
@@ -49,24 +48,29 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['nome'])) {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cadastro de Matéria</title>
+    <title>Nova Matéria</title>
+    <link rel="stylesheet" href="../css/criarmateria.css">
+    <link rel="stylesheet" href="../css/header.css">
 </head>
 <body>
-    <h1>Cadastro de Matéria</h1>
+    <header>
+        <h1>.</h1>
+    </header>
+    <div class="container-admateria">
+        <div class="form-box-admateria">
+            <h1 class="titulo-admateria">Nova matéria</h1>
 
-    <?php if (isset($mensagem)) { ?>
-        <p><?php echo htmlspecialchars($mensagem); ?></p>
-    <?php } ?>
+            <?php if (isset($mensagem)) { ?>
+                <p><?php echo htmlspecialchars($mensagem); ?></p>
+            <?php } ?>
 
-    <form action="" method="POST">
-        <label for="nome">Nome da Matéria:</label>
-        <input type="text" id="nome" name="nome" required>
-        <button type="submit">Cadastrar</button>
-    </form>
+            <form action="" method="POST" class="form-admateria">
+                <input type="text" id="materia" name="materia" placeholder="Adicionar matéria" class="input-admateria" required>
+                <button type="submit" class="btn-admateria">Anexar</button>
+            </form>
 
-    <?php if (isset($_SESSION['materia_cadastrada']) && $_SESSION['materia_cadastrada']) { ?>
-        <a href="materia.php?id=<?php echo $_SESSION['materia_id']; ?>">Ver Matéria</a>
-    <?php } ?>
-
+        </div>
+        <button class="list-btn-admateria">Listar</button>
+    </div>
 </body>
 </html>

@@ -58,37 +58,51 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['nome'], $_POST['oquee
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../css/cdtermo.css">
+    <link rel="stylesheet" href="../css/header.css">
     <title>Cadastro de Termos</title>
 </head>
 <body>
-    <h1>Cadastro de Termos</h1>
+    <header>
+        <h1>Cadastro de Termos</h1></header>
+<div class="container">
+        <?php if (isset($mensagem)) { ?>
+            <p><?php echo htmlspecialchars($mensagem); ?></p>
+        <?php } ?>
 
-    <?php if (isset($mensagem)) { ?>
-        <p><?php echo htmlspecialchars($mensagem); ?></p>
-    <?php } ?>
+        <div class="container">
+        <form action="" method="POST">
+            <div class="section">
+                <div class="title">Nome do Termo:</div>
+                <input type="text" id="nome" name="nome" required>
+            </div>
 
-    <form action="" method="POST">
-        <label for="nome">Nome do Termo:</label>
-        <input type="text" id="nome" name="nome" required>
+            <div class="section">
+                <div class="title">O que é:</div>
+                <textarea id="oquee" name="oquee" required></textarea>
+            </div>
 
-        <input type="hidden" name="materia_id" value="<?php echo htmlspecialchars($materia_id); ?>">
+            <div class="section">
+                <div class="title">Onde Usa:</div>
+                <textarea id="ondeusa" name="ondeusa" required></textarea>
+            </div>
 
-        <label for="oquee">O que é:</label>
-        <textarea id="oquee" name="oquee" required></textarea>
+            <div class="section">
+                <div class="title">Exemplo:</div>
+                <textarea id="exemplo" name="exemplo" required></textarea>
+            </div>
 
-        <label for="ondeusa">Onde Usa:</label>
-        <textarea id="ondeusa" name="ondeusa" required></textarea>
+            <div class="section">
+                <div class="title">Fórmula:</div>
+                <textarea id="formula" name="formula" required></textarea>
+            </div>
 
-        <label for="exemplo">Exemplo:</label>
-        <textarea id="exemplo" name="exemplo" required></textarea>
+            <button type="submit">Adicionar</button>
+        </form>
+    </div>
 
-        <label for="formula">Fórmula:</label>
-        <textarea id="formula" name="formula" required></textarea>
-
-        <button type="submit">Cadastrar</button>
-    </form>
-
-    <a href="materia.php?id=<?php echo htmlspecialchars($materia_id); ?>">Voltar para a Matéria</a>
-    <a href="index.php">Voltar para o índice</a>
+        <a href="materia.php?id=<?php echo htmlspecialchars($materia_id); ?>">Voltar para a Matéria</a>
+        <a href="index.php">Voltar para o índice</a>
+    </div>
 </body>
 </html>
