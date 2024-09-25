@@ -50,6 +50,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['materia'])) {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Nova Matéria</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <link rel="stylesheet" href="../css/criarmateria.css">
     <link rel="stylesheet" href="../css/header.css">
 </head>
@@ -71,7 +72,66 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['materia'])) {
             </form>
 
         </div>
-        <button class="list-btn-admateria">Listar</button>
+
+<!----------------------LISTAR------------------------------------------------------>
+        <style>
+        #materias-lista {
+            display: none; 
+            text-decoration: none;
+        }
+    </style>
+      <div>
+        <button class="list-btn-admateria" onclick="alternarMaterias()">Listar</button>
     </div>
+
+    <div id="materias-lista">
+        <?php
+        // Conexão com o banco de dados
+        $host = 'localhost';
+        $dbname = 'exatas';
+        $username = 'root';
+        $password = '';
+
+        try {
+            $pdo = new PDO("mysql:host=$host;dbname=$dbname;charset=utf8", $username, $password);
+            $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+            
+            // Consulta para buscar todas as matérias
+            $sql = "SELECT id, nome FROM materias";
+            $stmt = $pdo->prepare($sql);
+            $stmt->execute();
+            
+            // Verificar se há matérias cadastradas
+            $materias = $stmt->fetchAll(PDO::FETCH_ASSOC);
+            
+            if (count($materias) > 0) {
+                echo "<ul>";
+                foreach ($materias as $materia) {
+                    echo "<li>" . htmlspecialchars($materia['nome']) . "</li>";
+                }
+                echo "</ul>";
+            } else {
+                echo "Nenhuma matéria cadastrada.";
+            }
+            
+        } catch (PDOException $e) {
+            die("Erro ao conectar: " . $e->getMessage());
+        }
+        ?>
+    </div>
+
+    <script>
+        function alternarMaterias() {
+            var lista = document.getElementById('materias-lista');
+            if (lista.style.display === 'none' || lista.style.display === '') {
+                lista.style.display = 'block'; // Exibe a lista
+            } else {
+                lista.style.display = 'none'; // Oculta a lista
+            }
+        }
+    </script>
 </body>
 </html>
+</body>
+</html>
+
