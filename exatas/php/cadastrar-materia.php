@@ -61,11 +61,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['materia'])) {
     <div class="container-admateria">
         <div class="form-box-admateria">
             <h1 class="titulo-admateria">Nova matéria</h1>
-
-            <?php if (isset($mensagem)) { ?>
-                <p><?php echo htmlspecialchars($mensagem); ?></p>
-            <?php } ?>
-
+          
+         
+    
             <form action="" method="POST" class="form-admateria">
                 <input type="text" id="materia" name="materia" placeholder="Adicionar matéria" class="input-admateria" required>
                 <button type="submit" class="btn-admateria">Anexar</button>
@@ -83,6 +81,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['materia'])) {
      <div>
     <a href="listar_materias.php" class="btn list-btn-admateria">Listar</a>
 </div>
+<div class="img">
+<?php if (isset($mensagem)) { ?>
+                <p><?php echo htmlspecialchars($mensagem); ?></p>
+            <?php } ?>
+            </div>
 
 
     <div id="materias-lista">

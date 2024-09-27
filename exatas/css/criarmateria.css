@@ -72,3 +72,7 @@ body {
     background-color: #004080;
     transition: 150ms;
 }
+
+.img p {
+    font-size: 40px;
+}
