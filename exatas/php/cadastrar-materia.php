@@ -80,9 +80,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['materia'])) {
             text-decoration: none;
         }
     </style>
-      <div>
-        <button class="list-btn-admateria" onclick="alternarMaterias()">Listar</button>
-    </div>
+     <div>
+    <a href="listar_materias.php" class="btn list-btn-admateria">Listar</a>
+</div>
+
 
     <div id="materias-lista">
         <?php

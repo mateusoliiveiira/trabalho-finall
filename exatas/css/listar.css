@@ -1,0 +1,116 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #fff;
+}
+
+.container {
+    width: 100%;
+    max-width: 800px;
+    margin: 50px auto;
+    text-align: center;
+}
+
+.titulo {
+    background-color: #0057b8;
+    color: white;
+    padding: 15px 0;
+    font-size: 28px;
+    text-transform: uppercase;
+    margin-bottom: 0;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 0;
+}
+
+thead th {
+    background-color: #e1e8ed;
+    color: black;
+    padding: 10px;
+    text-align: left;
+    font-weight: bold;
+    border-top: 3px solid #0057b8;
+}
+
+thead th:last-child, thead th:nth-child(2) {
+    text-align: right;
+}
+
+tbody td {
+    padding: 10px;
+    border-bottom: 1px solid #ddd;
+    text-align: left;
+}
+
+tbody td:last-child, tbody td:nth-child(2) {
+    text-align: right;
+}
+
+
+/* Modal */
+/* Modal */
+.modal {
+    display: none; /* Inicialmente escondido */
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5); /* Fundo escurecido */
+}
+
+.modal-content {
+    background-color: #fff; /* Cor de fundo branca */
+    margin: 15% auto;
+    padding: 20px 0px 0px 0px;    
+    border-radius: 2px;
+    width: 400px; /* Largura da caixa */
+    text-align: center; /* Centraliza o texto */
+    display: flex; /* Adicionado */
+    flex-direction: column; /* Adicionado */
+    justify-content: space-between; /* Adicionado */
+    height: 200px; /* Adicionado (ajuste conforme necessário) */
+
+}
+
+.modal-content h2 {
+    font-size: 20px; /* Tamanho da fonte */
+    font-weight: bold; /* Negrito */
+    padding: 10px; /* Adiciona preenchimento ao redor do texto */
+    text-align: justify; /* Justifica o texto */
+}
+
+
+.modal-footer {
+    background-color: #0057b8; /* Fundo azul para a área dos botões */
+    padding: 10px; /* Espaço dentro da área dos botões */
+    display: flex; /* Flexbox para alinhar os botões */
+    justify-content: flex-end; /* Alinha os botões à direita */
+}
+
+.modal-footer button {
+    padding: 10px 20px; /* Espaçamento interno dos botões */
+    margin-left: 10px; /* Espaço entre os botões */
+    border: none; /* Remove borda */
+    border-radius: 2px; /* Borda arredondada */
+    cursor: pointer; /* Muda o cursor para pointer */
+    font-size: 16px; /* Tamanho da fonte dos botões */
+    color: blue; /* Cor do texto branco */
+    background-color: #ffffff; /* Fundo branco */
+    transition: background-color 0.3s; /* Efeito de transição para hover */
+}
+
+.modal-footer .btn-confirm:hover,
+.modal-footer .btn-cancel:hover {
+    background-color: #e1e8ed; /* Efeito hover */
+}
+
