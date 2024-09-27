@@ -1,3 +1,4 @@
+@import url('https://fonts.googleapis.com/css2?family=Jomhuria&display=swap');
 * {
     margin: 0;
     padding: 0;
@@ -5,7 +6,7 @@
 }
 
 body {
-    font-family: Arial, sans-serif;
+    font-family:Jomhuria ;
     background-color: #fff;
 }
 
@@ -15,6 +16,29 @@ body {
     margin: 50px auto;
     text-align: center;
 }
+.header {
+    width: 100%;
+    background-color: #004AAD;
+    color: white;
+    padding: 22.5px 0; /* Aumenta o espaçamento vertical */
+    font-size: 70px; /* Aumenta o tamanho do texto */
+    height: 140px;
+  
+  }
+
+ .titulo2{
+    text-align:center;
+    font-size: 150px;
+    margin-top: -10px;
+    color: rgb(255, 255, 255);
+    line-height: 1.0;
+    text-shadow: 
+          -1px -1px 0 black,  
+          1px -1px 0 black,  
+          -1px 1px 0 black,  
+          1px 1px 0 black;
+  }
+  
 
 .titulo {
     background-color: #0057b8;
@@ -23,6 +47,7 @@ body {
     font-size: 28px;
     text-transform: uppercase;
     margin-bottom: 0;
+    
 }
 
 table {
@@ -69,7 +94,7 @@ tbody td:last-child, tbody td:nth-child(2) {
 }
 
 .modal-content {
-    background-color: #fff; /* Cor de fundo branca */
+    background-color: #d2d9e3; /* Cor de fundo branca */
     margin: 15% auto;
     padding: 20px 0px 0px 0px;    
     border-radius: 2px;
@@ -83,7 +108,7 @@ tbody td:last-child, tbody td:nth-child(2) {
 }
 
 .modal-content h2 {
-    font-size: 20px; /* Tamanho da fonte */
+    font-size: 40px; /* Tamanho da fonte */
     font-weight: bold; /* Negrito */
     padding: 10px; /* Adiciona preenchimento ao redor do texto */
     text-align: justify; /* Justifica o texto */
@@ -95,22 +120,33 @@ tbody td:last-child, tbody td:nth-child(2) {
     padding: 10px; /* Espaço dentro da área dos botões */
     display: flex; /* Flexbox para alinhar os botões */
     justify-content: flex-end; /* Alinha os botões à direita */
+   
 }
 
 .modal-footer button {
-    padding: 10px 20px; /* Espaçamento interno dos botões */
+    padding: 0px 42px; /* Espaçamento interno dos botões */
     margin-left: 10px; /* Espaço entre os botões */
     border: none; /* Remove borda */
     border-radius: 2px; /* Borda arredondada */
     cursor: pointer; /* Muda o cursor para pointer */
-    font-size: 16px; /* Tamanho da fonte dos botões */
-    color: blue; /* Cor do texto branco */
+    font-size: 30px; /* Tamanho da fonte dos botões */
+    color: #004aac; /* Cor do texto branco */
     background-color: #ffffff; /* Fundo branco */
     transition: background-color 0.3s; /* Efeito de transição para hover */
+    
 }
 
 .modal-footer .btn-confirm:hover,
 .modal-footer .btn-cancel:hover {
     background-color: #e1e8ed; /* Efeito hover */
+
 }
 
+.delete-btn{
+    color:black;
+    text-decoration: none !important;
+}
+
+tbody{
+    font-size: 50px;
+}
