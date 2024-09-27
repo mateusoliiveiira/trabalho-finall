@@ -55,8 +55,26 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['materia'])) {
     <link rel="stylesheet" href="../css/header.css">
 </head>
 <body>
+    
     <header>
         <h1 class="titulo">Adicionar Matéria</h1>
+        <style>
+a.log img {
+    width: 60px;
+    height: auto;
+    transition: transform 0.3s ease; /* animação suave */
+}
+
+a.log img:hover {
+    transform: scale(1.2); /* aumenta a imagem em 20% */
+}
+
+
+</style>
+
+<a class="log" href="index.php">
+    <img src="../img/digitar.png" width="100" height="100">
+</a>
     </header>
     <div class="container-admateria">
         <div class="form-box-admateria">

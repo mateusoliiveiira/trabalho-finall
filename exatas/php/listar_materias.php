@@ -26,8 +26,26 @@ try {
 </head>
 <body>
     <div class="header">
-        <h1 >Aprende facil</h1>
+      <h1 >Aprende facil</h1>
     </div>
+<style>
+a.log img {
+    width: 60px;
+    height: auto;
+    transition: transform 0.3s ease; /* animação suave */
+}
+
+a.log img:hover {
+    transform: scale(1.2); /* aumenta a imagem em 20% */
+}
+
+
+</style>
+
+<a class="log" href="cadastrar-materia.php">
+    <img src="../img/digitar.png" width="100" height="100">
+</a>
+
     <div class="container">
         <h1>Matérias</h1>
         <table>
