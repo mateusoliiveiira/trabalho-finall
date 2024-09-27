@@ -66,7 +66,7 @@ if (isset($_GET['id'])) {
     <link rel="stylesheet" href="../css/header.css">
     <title><?php echo htmlspecialchars($dados['materia']['nome']); ?></title>
 </head>
-<body background="../img/fundo.png" >
+<body background="../img/fundo.png">
     <header>
         <h1 class="titulo">Matéria: <?php echo htmlspecialchars($dados['materia']['nome']); ?></h1>
     </header>
