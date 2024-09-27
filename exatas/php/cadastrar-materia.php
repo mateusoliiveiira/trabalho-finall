@@ -68,8 +68,6 @@ a.log img {
 a.log img:hover {
     transform: scale(1.2); /* aumenta a imagem em 20% */
 }
-
-
 </style>
 
 <a class="log" href="index.php">

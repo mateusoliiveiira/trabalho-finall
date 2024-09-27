@@ -73,10 +73,31 @@ if (isset($_GET['id'])) {
 
     <main>
         <!-- Formulário de pesquisa -->
-        <form action="lista.php" method="POST" class="search-form">
+        <form action="lista.php?id=<?php echo htmlspecialchars($id); ?>" method="POST" class="search-form">
             <input type="hidden" name="id" value="<?php echo htmlspecialchars($id); ?>">
-            <input type="text" id="nome" name="nome" placeholder="Digite o termo..." class="search-input">
+            <input type="text" id="nome" name="pesquisar_nome" placeholder="Digite o termo..." class="search-input">
+            <button type="submit" class="btn btn-primary">Pesquisar</button>
         </form>
+
+        <!-- Exibir os termos encontrados -->
+        <section class="termos">
+            <h2>Termos Associados:</h2>
+            <?php if (!empty($dados['termos'])): ?>
+                <ul class="list-group">
+                    <?php foreach ($dados['termos'] as $termo): ?>
+                        <li class="list-group-item">
+                            <h4><?php echo htmlspecialchars($termo['nome']); ?></h4>
+                            <p><strong>O que é:</strong> <?php echo htmlspecialchars($termo['oquee']); ?></p>
+                            <p><strong>Onde Usa:</strong> <?php echo htmlspecialchars($termo['ondeusa']); ?></p>
+                            <p><strong>Exemplo:</strong> <?php echo htmlspecialchars($termo['exemplo']); ?></p>
+                            <p><strong>Fórmula:</strong> <?php echo htmlspecialchars($termo['formula']); ?></p>
+                        </li>
+                    <?php endforeach; ?>
+                </ul>
+            <?php else: ?>
+                <p>Nenhum termo encontrado para esta matéria.</p>
+            <?php endif; ?>
+        </section>
     </main>
 
     <footer>
