@@ -26,10 +26,10 @@ try {
 </head>
 <body>
     <div class="header">
-        <h1 class="titulo2">Aprende facil</h1>
+        <h1 >Aprende facil</h1>
     </div>
     <div class="container">
-        <h1 class="titulo">Matérias</h1>
+        <h1>Matérias</h1>
         <table>
             <tbody>
                 <?php
