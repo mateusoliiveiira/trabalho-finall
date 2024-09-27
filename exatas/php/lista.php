@@ -12,6 +12,10 @@ try {
     die("Erro ao conectar: " . $e->getMessage());
 }
 
+if (isset($_GET['termo'])){
+    $nome = $_GET['termo'];
+    $dados = listarTermos($pdo, $materia_id, $nome);
+}
 // Função para listar termos com base em materia_id e nome
 function listarTermos($pdo, $materia_id, $nome = '') {
     $sql = 'SELECT id, nome, oquee, ondeusa, exemplo, formula

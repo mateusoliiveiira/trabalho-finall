@@ -66,36 +66,25 @@ if (isset($_GET['id'])) {
     <link rel="stylesheet" href="../css/header.css">
     <title><?php echo htmlspecialchars($dados['materia']['nome']); ?></title>
 </head>
-<body background="../img/fundo.png">
+<body background="../img/fundo.png" >
     <header>
         <h1 class="titulo">Matéria: <?php echo htmlspecialchars($dados['materia']['nome']); ?></h1>
     </header>
 
     <main>
         <!-- Formulário de pesquisa -->
-        <form action="lista.php" method="POST" class="search-form">
+        <form action="lista.php?id=<?php echo htmlspecialchars($id); ?>" method="POST" class="search-form">
             <input type="hidden" name="id" value="<?php echo htmlspecialchars($id); ?>">
-            <input type="text" id="nome" name="nome" placeholder="Digite o termo..." class="search-input">
+            <input type="text" id="nome" name="pesquisar_nome" placeholder="Digite o termo..." class="search-input">
         </form>
-        <section>
-        <h2>Termos Associados</h2>
-        <ul class="list-group">
-            <?php if (count($dados['termos']) > 0): ?>
-                <?php foreach ($dados['termos'] as $termo): ?>
-                    <li class="list-group-item">
-                        <strong><?php echo htmlspecialchars($termo['nome']); ?></strong><br>
-                        <em>O que é:</em> <?php echo htmlspecialchars($termo['oquee']); ?><br>
-                        <em>Onde usa:</em> <?php echo htmlspecialchars($termo['ondeusa']); ?><br>
-                        <em>Exemplo:</em> <?php echo htmlspecialchars($termo['exemplo']); ?><br>
-                        <em>Fórmula:</em> <?php echo htmlspecialchars($termo['formula']); ?>
-                    </li>
-                <?php endforeach; ?>
+
+        <!-- Exibir os termos encontrados -->
+        <section class="termos">
+            <?php if (!empty($dados['termos'])): ?>
             <?php else: ?>
-                <li class="list-group-item">Nenhum termo encontrado.</li>
+                <p>Nenhum termo encontrado para esta matéria.</p>
             <?php endif; ?>
-        </ul>
-    </section>
-</main>
+        </section>
     </main>
 
     <footer>
