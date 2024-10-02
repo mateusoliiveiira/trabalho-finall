@@ -5,6 +5,8 @@ $dbname = 'exatas';
 $username = 'root';
 $password = '';
 
+$materia_id = $_GET['id'];
+
 try {
     $pdo = new PDO("mysql:host=$host;dbname=$dbname;charset=utf8", $username, $password);
     $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
@@ -14,7 +16,7 @@ try {
 
 // Função para salvar um novo termo
 function salvarTermo($pdo, $nome, $oquee, $ondeusa, $exemplo, $formula) {
-    $materia_id = 1; // Definido como 5
+    $materia_id = $_GET['id'];
     $sql = 'INSERT INTO termos (nome, materia_id, oquee, ondeusa, exemplo, formula) 
             VALUES (:nome, :materia_id, :oquee, :ondeusa, :exemplo, :formula)';
     $stmt = $pdo->prepare($sql);

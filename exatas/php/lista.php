@@ -12,39 +12,49 @@ try {
     die("Erro ao conectar: " . $e->getMessage());
 }
 
-if (isset($_GET['termo'])){
-    $nome = $_GET['termo'];
-    $dados = listarTermos($pdo, $materia_id, $nome);
-}
-// Função para listar termos com base em materia_id e nome
-function listarTermos($pdo, $materia_id, $nome = '') {
-    $sql = 'SELECT id, nome, oquee, ondeusa, exemplo, formula
-            FROM termos
-            WHERE materia_id = :materia_id
-            AND nome LIKE :nome';
-    $stmt = $pdo->prepare($sql);
+$materia = $_GET['id'];
+
+// Função para buscar a matéria e seus termos associados pelo ID
+function obterMateriaETermos($pdo, $id, $nome = '') {
+    // Buscar a matéria pelo ID
+    $sqlMateria = 'SELECT * FROM materias WHERE id = :id';
+    $stmtMateria = $pdo->prepare($sqlMateria);
+    
+    // Buscar os termos associados a essa matéria
+    $sqlTermos = 'SELECT * FROM termos WHERE materia_id = :id AND nome LIKE :nome';
+    $stmtTermos = $pdo->prepare($sqlTermos);
     
     try {
-        $stmt->execute([
-            'materia_id' => $materia_id,
+        // Executar a consulta da matéria
+        $stmtMateria->execute(['id' => $id]);
+        $materia = $stmtMateria->fetch(PDO::FETCH_ASSOC);
+
+        // Executar a consulta dos termos associados
+        $stmtTermos->execute([
+            'id' => $id,
             'nome' => "%$nome%"
         ]);
-        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+        $termos = $stmtTermos->fetchAll(PDO::FETCH_ASSOC);
+
+        // Retornar a matéria e seus termos
+        return ['materia' => $materia, 'termos' => $termos];
     } catch (PDOException $e) {
-        die("Erro na consulta: " . $e->getMessage());
+        die("Erro ao buscar matéria e termos: " . $e->getMessage());
     }
 }
 
-// Inicializar variáveis
-$materia_id = isset($_POST['materia_id']) ? $_POST['materia_id'] : 1;
-$dados = [];
-$nome = isset($_POST['nome']) ? $_POST['nome'] : '';
- 
-// Buscar termos com base no nome fornecido
-if (!empty($nome)) {
-    $dados = listarTermos($pdo, $materia_id, $nome);
-
-   
+// Verificar se o ID da matéria foi passado
+if (isset($_GET['id'])) {
+    $id = $_GET['id'];
+    $nome = isset($_POST['pesquisar_nome']) ? $_POST['pesquisar_nome'] : '';
+    $dados = obterMateriaETermos($pdo, $id, $nome);
+    
+    // Verificar se a matéria existe
+    if (!$dados['materia']) {
+        die("Matéria não encontrada.");
+    }
+} else {
+    die("ID da matéria não fornecido.");
 }
 ?>
 
@@ -55,56 +65,65 @@ if (!empty($nome)) {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../css/lista.css">
     <link rel="stylesheet" href="../css/headerTermo.css">
-    <title>Resultados da Pesquisa</title>
+    <title><?php echo htmlspecialchars($dados['materia']['nome']); ?></title>
 </head>
 <body>
-<?php if (!empty($dados)) { ?>
-    <?php foreach ($dados as $dado) { ?>
+    <header>
+        <div class="header-dado">
+            Matéria: <?php echo htmlspecialchars($dados['materia']['nome']); ?>
+        </div>
+    </header>
 
-<div class="header-dado">
-    <?php echo htmlspecialchars($dado['nome']); ?>
-</div>
-
+    <main>
+        <?php if (!empty($dados['termos'])): ?>
             <div class="accordion">
-                <div class="accordion-item">
-                    <button class="accordion-header">ID</button>
-                    <div class="accordion-content">
-                        <?php echo htmlspecialchars($dado['id']); ?>
+                <?php foreach ($dados['termos'] as $termo): ?>
+                    <div class="accordion-item">
+                        <button class="accordion-header">ID</button>
+                        <div class="accordion-content">
+                            <?php echo htmlspecialchars($termo['id']); ?>
+                        </div>
                     </div>
-                </div>
-                        
-                <div class="accordion-item">
-                    <button class="accordion-header">O que é?</button>
-                    <div class="accordion-content">
-                        <?php echo htmlspecialchars($dado['oquee']); ?>
+                    
+                    <div class="accordion-item">
+                        <button class="accordion-header">O que é?</button>
+                        <div class="accordion-content">
+                            <?php echo htmlspecialchars($termo['oquee']); ?>
+                        </div>
                     </div>
-                </div>
 
-                <div class="accordion-item">
-                    <button class="accordion-header">Onde usa?</button>
-                    <div class="accordion-content">
-                        <?php echo htmlspecialchars($dado['ondeusa']); ?>
+                    <div class="accordion-item">
+                        <button class="accordion-header">Onde usa?</button>
+                        <div class="accordion-content">
+                            <?php echo htmlspecialchars($termo['ondeusa']); ?>
+                        </div>
                     </div>
-                </div>
 
-                <div class="accordion-item">
-                    <button class="accordion-header">Exemplo?</button>
-                    <div class="accordion-content">
-                        <?php echo htmlspecialchars($dado['exemplo']); ?>
+                    <div class="accordion-item">
+                        <button class="accordion-header">Exemplo</button>
+                        <div class="accordion-content">
+                            <?php echo htmlspecialchars($termo['exemplo']); ?>
+                        </div>
                     </div>
-                </div>
 
-                <div class="accordion-item">
-                    <button class="accordion-header">Fórmula?</button>
-                    <div class="accordion-content">
-                        <?php echo htmlspecialchars($dado['formula']); ?>
+                    <div class="accordion-item">
+                        <button class="accordion-header">Fórmula</button>
+                        <div class="accordion-content">
+                            <?php echo htmlspecialchars($termo['formula']); ?>
+                        </div>
                     </div>
-                </div>
+                <?php endforeach; ?>
             </div>
-        <?php } ?>
-    <?php } else if ($nome !== '') { ?>
-        <p>Nenhum termo encontrado para a matéria com ID <?php echo htmlspecialchars($materia_id); ?>.</p>
-    <?php } ?>
+        <?php else: ?>
+            <p>Nenhum termo encontrado para esta matéria.</p>
+        <?php endif; ?>
+    </main>
+
+    <footer>
+        <div class="container-botao-materia">
+            <button class="botao-materia"><a href="cadastrar-matematica.php?id=<?php echo $materia; ?>">+ Adicionar Termo</a></button>
+        </div>
+    </footer>
 
     <script src="../js/scriptlista.js"></script>
 </body>

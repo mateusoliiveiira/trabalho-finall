@@ -1,4 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Jomhuria&display=swap');
+
 * {
     margin: 0;
     padding: 0;
@@ -6,7 +7,7 @@
 }
 
 body {
-    font-family:Jomhuria ;
+    font-family: 'Jomhuria', sans-serif;
     background-color: #fff;
 }
 
@@ -19,7 +20,6 @@ body {
     background-color: #0057b8;
 }
 
-
 .header {
     width: 100%;
     background-color: #004AAD;
@@ -27,33 +27,27 @@ body {
     padding: 22.5px 0; /* Aumenta o espaçamento vertical */
     font-size: 70px; /* Aumenta o tamanho do texto */
     height: 140px;
-  
-  }
+}
 
-  .header h1{
-    text-align:center;
+.header h1 {
+    text-align: center;
     font-size: 150px;
     margin-top: -10px;
     color: rgb(255, 255, 255);
     line-height: 1.0;
     text-shadow: 
-          -1px -1px 0 black,  
-          1px -1px 0 black,  
-          -1px 1px 0 black,  
-          1px 1px 0 black;
-  }
-  
+        -1px -1px 0 black,  
+        1px -1px 0 black,  
+        -1px 1px 0 black,  
+        1px 1px 0 black;
+}
 
 .container h1 {
-   
     color: white;
     padding: 15px 0;
     font-size: 90px;
     margin-bottom: 0;
-    
 }
-
-
 
 table {
     width: 100%;
@@ -62,30 +56,35 @@ table {
 }
 
 thead th {
-    background-color: #e1e8ed;
-    color: black;
-    padding: 10px;
+    background-color: #0057b8; /* Azul mais forte para cabeçalho */
+    color: white; /* Texto branco */
+    padding: 15px; /* Aumenta o padding */
     text-align: left;
     font-weight: bold;
-    border-top: 3px solid #0057b8;
+    border-top: 3px solid #004AAD;
+    border-bottom: 2px solid #e1e8ed; /* Linha inferior para separação */
+    transition: background-color 0.3s; /* Transição suave */
 }
 
-thead th:last-child, thead th:nth-child(2) {
-    text-align: right;
+thead th:hover {
+    background-color: #004AAD; /* Cor mais escura ao passar o mouse */
 }
 
 tbody td {
-    padding: 10px;
+    padding: 15px; /* Aumenta o padding */
     border-bottom: 1px solid #ddd;
     text-align: left;
+    transition: background-color 0.3s; /* Transição suave */
+}
+
+tbody tr:hover {
+    background-color: #f1f1f1; /* Cor de fundo ao passar o mouse */
 }
 
 tbody td:last-child, tbody td:nth-child(2) {
     text-align: right;
 }
 
-
-/* Modal */
 /* Modal */
 .modal {
     display: none; /* Inicialmente escondido */
@@ -109,7 +108,6 @@ tbody td:last-child, tbody td:nth-child(2) {
     flex-direction: column; /* Adicionado */
     justify-content: space-between; /* Adicionado */
     height: 200px; /* Adicionado (ajuste conforme necessário) */
-
 }
 
 .modal-content h2 {
@@ -119,13 +117,11 @@ tbody td:last-child, tbody td:nth-child(2) {
     text-align: justify; /* Justifica o texto */
 }
 
-
 .modal-footer {
     background-color: #0057b8; /* Fundo azul para a área dos botões */
     padding: 10px; /* Espaço dentro da área dos botões */
     display: flex; /* Flexbox para alinhar os botões */
     justify-content: flex-end; /* Alinha os botões à direita */
-   
 }
 
 .modal-footer button {
@@ -138,20 +134,18 @@ tbody td:last-child, tbody td:nth-child(2) {
     color: #004aac; /* Cor do texto branco */
     background-color: #ffffff; /* Fundo branco */
     transition: background-color 0.3s; /* Efeito de transição para hover */
-    
 }
 
 .modal-footer .btn-confirm:hover,
 .modal-footer .btn-cancel:hover {
     background-color: #e1e8ed; /* Efeito hover */
-
 }
 
-.delete-btn{
-    color:black;
+.delete-btn {
+    color: black;
     text-decoration: none !important;
 }
 
-tbody{
+tbody {
     font-size: 50px;
 }
