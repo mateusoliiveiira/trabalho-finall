@@ -17,15 +17,13 @@ header {
     width: 100%;
     background-color: #004AAD;
     color: white;
-    padding: 22.5px 0; /* Aumenta o espaçamento vertical */
     height: 140px;
-  
+    display: flex;
   }
 
   .titulo{
     text-align:center;
     font-size: 150px;
-    margin-top: -10px;
     color: rgb(255, 255, 255);
     line-height: 1.0;
     text-shadow: 
@@ -35,3 +33,16 @@ header {
           1px 1px 0 black;
   }
   
+  .cabecalho {
+    display: flex;
+    align-items: center;
+}
+
+.cabecalho a {
+    margin-left: 2em;
+    margin-top: -1em;
+}
+
+.adicionar  {
+    margin-left: 20%;
+}

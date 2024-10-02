@@ -5,6 +5,8 @@ $dbname = 'exatas';
 $username = 'root';
 $password = '';
 
+$id = $_GET['id'];
+
 try {
     $pdo = new PDO("mysql:host=$host;dbname=$dbname;charset=utf8", $username, $password);
     $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
@@ -61,8 +63,36 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['nome'], $_POST['oquee
     <link rel="stylesheet" href="../css/header.css"> 
 </head>
 <body>
-<header>  <h1 class="titulo">Adicionar Termo</h1>
-</header>  
+<header>
+        <div class="cabecalho">
+            <a class="log" href="materia.php?id=<?php echo $id; ?>"><img src="../img/digitar.png" width="100" height="100"></a>
+        </div>
+        <div class ="adicionar">
+           <h1 class="titulo margin-left">Adicionar termo</h1> 
+        </div>
+        
+
+        <style>
+            a.log img {
+                width: 60px;
+                height: auto;
+                transition: transform 0.3s ease;
+                /* animação suave */
+            }
+
+            a.log img:hover {
+                transform: scale(1.2);
+                /* aumenta a imagem em 20% */
+            }
+            .margin-left{
+                margin-left: 0.5em;
+            }
+
+        </style>
+
+
+        </a>
+    </header>
     <?php if (isset($mensagem)) { ?>
         <p><?php echo htmlspecialchars($mensagem); ?></p>
     <?php } ?>

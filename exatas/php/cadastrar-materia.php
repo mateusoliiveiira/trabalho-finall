@@ -15,7 +15,8 @@ try {
 }
 
 // Função para salvar a matéria
-function salvarMateria($pdo, $nome) {
+function salvarMateria($pdo, $nome)
+{
     $sql = 'INSERT INTO materias (nome) VALUES (:nome)';
     $stmt = $pdo->prepare($sql);
 
@@ -32,7 +33,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['materia'])) {
     $nome = $_POST['materia'];
 
     $materia_id = salvarMateria($pdo, $nome);
-    
+
     if ($materia_id) {
         $_SESSION['materia_cadastrada'] = true;
         $_SESSION['materia_id'] = $materia_id; // Armazenar o ID da matéria
@@ -45,6 +46,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['materia'])) {
 
 <!DOCTYPE html>
 <html lang="pt-br">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -54,104 +56,116 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['materia'])) {
     <link rel="stylesheet" href="../css/criarmateria.css">
     <link rel="stylesheet" href="../css/header.css">
 </head>
+
 <body>
-    
+
     <header>
-        <h1 class="titulo">Adicionar Matéria</h1>
+        <div class="cabecalho">
+            <a class="log" href="index.php"><img src="../img/digitar.png" width="100" height="100"></a>
+        </div>
+        <div class ="adicionar">
+           <h1 class="titulo">Adicionar Matéria</h1> 
+        </div>
+        
+
         <style>
-a.log img {
-    width: 60px;
-    height: auto;
-    transition: transform 0.3s ease; /* animação suave */
-}
+            a.log img {
+                width: 60px;
+                height: auto;
+                transition: transform 0.3s ease;
+                /* animação suave */
+            }
 
-a.log img:hover {
-    transform: scale(1.2); /* aumenta a imagem em 20% */
-}
-</style>
+            a.log img:hover {
+                transform: scale(1.2);
+                /* aumenta a imagem em 20% */
+            }
 
-<a class="log" href="index.php">
-    <img src="../img/digitar.png" width="100" height="100">
-</a>
+        </style>
+
+
+        </a>
     </header>
     <div class="container-admateria">
         <div class="form-box-admateria">
             <h1 class="titulo-admateria">Nova matéria</h1>
-          
-         
-    
+
+
+
             <form action="" method="POST" class="form-admateria">
-                <input type="text" id="materia" name="materia" placeholder="Adicionar matéria" class="input-admateria" required>
+                <input type="text" id="materia" name="materia" placeholder="Adicionar matéria" class="input-admateria"
+                    required>
                 <button type="submit" class="btn-admateria">Anexar</button>
             </form>
 
         </div>
 
-<!----------------------LISTAR------------------------------------------------------>
+        <!----------------------LISTAR------------------------------------------------------>
         <style>
-        #materias-lista {
-            display: none; 
-            text-decoration: none;
-        }
-    </style>
-     <div>
-    <a href="listar_materias.php" class="btn list-btn-admateria">Listar</a>
-</div>
-<div class="img">
-<?php if (isset($mensagem)) { ?>
+            #materias-lista {
+                display: none;
+                text-decoration: none;
+            }
+        </style>
+        <div>
+            <a href="listar_materias.php" class="btn list-btn-admateria">Listar</a>
+        </div>
+        <div class="img">
+            <?php if (isset($mensagem)) { ?>
                 <p><?php echo htmlspecialchars($mensagem); ?></p>
             <?php } ?>
-            </div>
+        </div>
 
 
-    <div id="materias-lista">
-        <?php
-        // Conexão com o banco de dados
-        $host = 'localhost';
-        $dbname = 'exatas';
-        $username = 'root';
-        $password = '';
+        <div id="materias-lista">
+            <?php
+            // Conexão com o banco de dados
+            $host = 'localhost';
+            $dbname = 'exatas';
+            $username = 'root';
+            $password = '';
 
-        try {
-            $pdo = new PDO("mysql:host=$host;dbname=$dbname;charset=utf8", $username, $password);
-            $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-            
-            // Consulta para buscar todas as matérias
-            $sql = "SELECT id, nome FROM materias";
-            $stmt = $pdo->prepare($sql);
-            $stmt->execute();
-            
-            // Verificar se há matérias cadastradas
-            $materias = $stmt->fetchAll(PDO::FETCH_ASSOC);
-            
-            if (count($materias) > 0) {
-                echo "<ul>";
-                foreach ($materias as $materia) {
-                    echo "<li>" . htmlspecialchars($materia['nome']) . "</li>";
+            try {
+                $pdo = new PDO("mysql:host=$host;dbname=$dbname;charset=utf8", $username, $password);
+                $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+
+                // Consulta para buscar todas as matérias
+                $sql = "SELECT id, nome FROM materias";
+                $stmt = $pdo->prepare($sql);
+                $stmt->execute();
+
+                // Verificar se há matérias cadastradas
+                $materias = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+                if (count($materias) > 0) {
+                    echo "<ul>";
+                    foreach ($materias as $materia) {
+                        echo "<li>" . htmlspecialchars($materia['nome']) . "</li>";
+                    }
+                    echo "</ul>";
+                } else {
+                    echo "Nenhuma matéria cadastrada.";
                 }
-                echo "</ul>";
-            } else {
-                echo "Nenhuma matéria cadastrada.";
-            }
-            
-        } catch (PDOException $e) {
-            die("Erro ao conectar: " . $e->getMessage());
-        }
-        ?>
-    </div>
 
-    <script>
-        function alternarMaterias() {
-            var lista = document.getElementById('materias-lista');
-            if (lista.style.display === 'none' || lista.style.display === '') {
-                lista.style.display = 'block'; // Exibe a lista
-            } else {
-                lista.style.display = 'none'; // Oculta a lista
+            } catch (PDOException $e) {
+                die("Erro ao conectar: " . $e->getMessage());
             }
-        }
-    </script>
+            ?>
+        </div>
+
+        <script>
+            function alternarMaterias() {
+                var lista = document.getElementById('materias-lista');
+                if (lista.style.display === 'none' || lista.style.display === '') {
+                    lista.style.display = 'block'; // Exibe a lista
+                } else {
+                    lista.style.display = 'none'; // Oculta a lista
+                }
+            }
+        </script>
 </body>
+
 </html>
 </body>
-</html>
 
+</html>
