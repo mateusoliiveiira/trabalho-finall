@@ -32,9 +32,37 @@ if (isset($_GET['id'])) {
     <link rel="stylesheet" href="../css/header.css">
     <title>Pesquisar Termos</title>
 </head>
-<body background="../img/fundo.png">
-    <header>
-        <h1 class="titulo">Pesquisar Termos</h1>
+<body background="../img/fundo.png" >
+
+<header>
+        <div class="cabecalho">
+            <a class="log" href="index.php"><img src="../img/digitar.png" width="100" height="100"></a>
+        </div>
+        <div class ="adicionar">
+           <h1 class="titulo margin-left">Matéria: <?php echo htmlspecialchars($dados['materia']['nome']); ?></h1> 
+        </div>
+        
+
+        <style>
+            a.log img {
+                width: 60px;
+                height: auto;
+                transition: transform 0.3s ease;
+                /* animação suave */
+            }
+
+            a.log img:hover {
+                transform: scale(1.2);
+                /* aumenta a imagem em 20% */
+            }
+            .margin-left{
+                margin-left: 0em;
+            }
+
+        </style>
+
+
+        </a>
     </header>
 
     <main>
@@ -48,7 +76,7 @@ if (isset($_GET['id'])) {
 
     <footer>
         <div class="container-botao-materia">
-            <button class="botao-materia"><a href="cadastrar-matematica.php?id=<?php echo $materia_id; ?>">+ Adicionar Termo</a></button>
+        <a href="cadastrar-matematica.php?id=<?php echo $id; ?>"> <button class="botao-materia">+ Adicionar Termo</button></a>
         </div>
     </footer>
 </body>
