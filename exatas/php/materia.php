@@ -1,11 +1,11 @@
+
+
 <?php
 // Conectar ao banco de dados
 $host = 'localhost';
 $dbname = 'exatas';
 $username = 'root';
 $password = '';
-
-$materia_id = $_GET['id'];
 
 try {
     $pdo = new PDO("mysql:host=$host;dbname=$dbname;charset=utf8", $username, $password);
@@ -14,9 +14,45 @@ try {
     die("Erro ao conectar: " . $e->getMessage());
 }
 
+// Função para buscar a matéria e seus termos associados pelo ID
+function obterMateriaETermos($pdo, $id, $nome = '') {
+    // Buscar a matéria pelo ID
+    $sqlMateria = 'SELECT * FROM materias WHERE id = :id';
+    $stmtMateria = $pdo->prepare($sqlMateria);
+    
+    // Buscar os termos associados a essa matéria
+    $sqlTermos = 'SELECT * FROM termos WHERE materia_id = :id AND nome LIKE :nome';
+    $stmtTermos = $pdo->prepare($sqlTermos);
+    
+    try {
+        // Executar a consulta da matéria
+        $stmtMateria->execute(['id' => $id]);
+        $materia = $stmtMateria->fetch(PDO::FETCH_ASSOC);
+
+        // Executar a consulta dos termos associados
+        $stmtTermos->execute([
+            'id' => $id,
+            'nome' => "%$nome%"
+        ]);
+        $termos = $stmtTermos->fetchAll(PDO::FETCH_ASSOC);
+
+        // Retornar a matéria e seus termos
+        return ['materia' => $materia, 'termos' => $termos];
+    } catch (PDOException $e) {
+        die("Erro ao buscar matéria e termos: " . $e->getMessage());
+    }
+}
+
 // Verificar se o ID da matéria foi passado
 if (isset($_GET['id'])) {
     $id = $_GET['id'];
+    $nome = isset($_POST['pesquisar_nome']) ? $_POST['pesquisar_nome'] : '';
+    $dados = obterMateriaETermos($pdo, $id, $nome);
+    
+    // Verificar se a matéria existe
+    if (!$dados['materia']) {
+        die("Matéria não encontrada.");
+    }
 } else {
     die("ID da matéria não fornecido.");
 }
@@ -100,3 +136,7 @@ if (isset($_GET['id'])) {
     </footer>
 </body>
 </html>
+
+
+
+
