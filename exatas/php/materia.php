@@ -79,6 +79,7 @@ if (isset($_GET['id'])) {
         </form>
         <section>
         <h2>Termos Associados</h2>
+        
         <ul class="list-group">
             <?php if (count($dados['termos']) > 0): ?>
                 <?php foreach ($dados['termos'] as $termo): ?>
@@ -96,7 +97,7 @@ if (isset($_GET['id'])) {
         </ul>
     </section>
 </main>
-    </main>
+  
 
     <footer>
         <div class="container-botao-materia">
