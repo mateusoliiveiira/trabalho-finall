@@ -109,21 +109,7 @@ if (isset($_GET['id'])) {
             <button type="submit">Pesquisar</button>
         </form>
         <section>
-        <h2>Termos Associados</h2>
-        <ul class="list-group">
-            <?php if (count($dados['termos']) > 0): ?>
-                <?php foreach ($dados['termos'] as $termo): ?>
-                    <li class="list-group-item">
-                        <strong><?php echo htmlspecialchars($termo['nome']); ?></strong><br>
-                        <em>O que é:</em> <?php echo htmlspecialchars($termo['oquee']); ?><br>
-                        <em>Onde usa:</em> <?php echo htmlspecialchars($termo['ondeusa']); ?><br>
-                        <em>Exemplo:</em> <?php echo htmlspecialchars($termo['exemplo']); ?><br>
-                        <em>Fórmula:</em> <?php echo htmlspecialchars($termo['formula']); ?>
-                    </li>
-                <?php endforeach; ?>
-            <?php else: ?>
-                <li class="list-group-item">Nenhum termo encontrado.</li>
-            <?php endif; ?>
+       =
         </ul>
     </section>
 </main>
