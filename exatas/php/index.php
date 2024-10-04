@@ -70,6 +70,6 @@ $materias = listarMaterias($pdo);
         </a>
     </div>
 </main>
-
+       
 </body>
 </html>
