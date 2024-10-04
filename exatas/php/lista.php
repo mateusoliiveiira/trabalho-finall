@@ -78,12 +78,9 @@ if (isset($_GET['id'])) {
         <?php if (!empty($dados['termos'])): ?>
             <div class="accordion">
                 <?php foreach ($dados['termos'] as $termo): ?>
-                    <div class="accordion-item">
-                        <button class="accordion-header">ID</button>
-                        <div class="accordion-content">
-                            <?php echo htmlspecialchars($termo['id']); ?>
-                        </div>
-                    </div>
+               
+                
+                 
                     
                     <div class="accordion-item">
                         <button class="accordion-header">O que é?</button>
