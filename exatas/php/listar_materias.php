@@ -22,29 +22,40 @@ try {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
     <title>Lista de Matérias</title>
+    <link rel="stylesheet" href="../css/header.css">
     <link rel="stylesheet" href="../css/listar.css">
 </head>
 <body>
-    <div class="header">
-      <h1 >Aprende facil</h1>
-    </div>
-<style>
-a.log img {
-    width: 60px;
-    height: auto;
-    transition: transform 0.3s ease; /* animação suave */
-}
+<header>
+        <div class="cabecalho">
+            <a class="log" href="cadastrar-materia.php"><img src="../img/digitar.png" width="100" height="100"></a>
+        </div>
+        <div class ="adicionar">
+           <h1 class="titulo margin-left">Aprende Fácil</h1> 
+        </div>
+        
 
-a.log img:hover {
-    transform: scale(1.2); /* aumenta a imagem em 20% */
-}
+        <style>
+            a.log img {
+                width: 60px;
+                height: auto;
+                transition: transform 0.3s ease;
+                /* animação suave */
+            }
+
+            a.log img:hover {
+                transform: scale(1.2);
+                /* aumenta a imagem em 20% */
+            }
+            .margin-left{
+                margin-left: 0.6em;
+            }
+
+        </style>
 
 
-</style>
-
-<a class="log" href="cadastrar-materia.php">
-    <img src="../img/digitar.png" width="100" height="100">
-</a>
+        </a>
+    </header>
 
     <div class="container">
         <h1>Matérias</h1>
