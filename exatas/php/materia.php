@@ -14,9 +14,40 @@ try {
     die("Erro ao conectar: " . $e->getMessage());
 }
 
+function obterMateriaETermos($pdo, $materia_id, $nome = '') {
+    // Buscar a matéria pelo ID
+    $sqlMateria = 'SELECT * FROM materias WHERE id = :id';
+    $stmtMateria = $pdo->prepare($sqlMateria);
+    
+    // Buscar os termos associados a essa matéria
+    $sqlTermos = 'SELECT * FROM termos WHERE materia_id = :id AND nome LIKE :nome';
+    $stmtTermos = $pdo->prepare($sqlTermos);
+    
+    try {
+        // Executar a consulta da matéria
+        $stmtMateria->execute(['id' => $materia_id]);
+        $materia = $stmtMateria->fetch(PDO::FETCH_ASSOC);
+        // Executar a consulta dos termos associados
+        $stmtTermos->execute([
+            'id' => $materia_id,
+            'nome' => "%$nome%"
+        ]);
+        $termos = $stmtTermos->fetchAll(PDO::FETCH_ASSOC);
+        // Retornar a matéria e seus termos
+        return ['materia' => $materia, 'termos' => $termos];
+    } catch (PDOException $e) {
+        die("Erro ao buscar matéria e termos: " . $e->getMessage());
+    }
+}
+
+
+
 // Verificar se o ID da matéria foi passado
 if (isset($_GET['id'])) {
     $id = $_GET['id'];
+
+    $nome = isset($_POST['pesquisar_nome']) ? $_POST['pesquisar_nome'] : '';
+    $dados = obterMateriaETermos($pdo, $materia_id, $nome);
 } else {
     die("ID da matéria não fornecido.");
 }
@@ -70,7 +101,6 @@ if (isset($_GET['id'])) {
         <form action="lista.php?id=<?php echo htmlspecialchars($id); ?>" method="POST" class="search-form">
             <input type="hidden" name="id" value="<?php echo htmlspecialchars($id); ?>">
             <input type="text" id="nome" name="pesquisar_nome" placeholder="Digite o termo..." class="search-input">
-            <button type="submit">Pesquisar</button>
         </form>
     </main>
 
