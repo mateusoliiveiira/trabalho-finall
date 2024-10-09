@@ -121,20 +121,14 @@ if (isset($_GET['id'])) {
         <thead>
             <tr>
                 <th>Nome</th>
-                <th>O que é</th>
-                <th>Onde Usa</th>
-                <th>Exemplo</th>
-                <th>Fórmula</th>
+                
             </tr>
         </thead>
         <tbody>
             <?php foreach ($termos as $termo) { ?>
                 <tr>
                     <td><?php echo htmlspecialchars($termo['nome']); ?></td>
-                    <td><?php echo htmlspecialchars($termo['oquee']); ?></td>
-                    <td><?php echo htmlspecialchars($termo['ondeusa']); ?></td>
-                    <td><?php echo htmlspecialchars($termo['exemplo']); ?></td>
-                    <td><?php echo htmlspecialchars($termo['formula']); ?></td>
+                 
                 </tr>
             <?php } ?>
         </tbody>
