@@ -19,10 +19,16 @@ class TermoController {
             $ondeusa = $_POST['ondeusa'];
             $exemplo = $_POST['exemplo'];
             $formula = $_POST['formula'];
-
+    
+            // Verificar se a fórmula é um link de imagem
+            if (filter_var($formula, FILTER_VALIDATE_URL) && preg_match('/\.(jpg|jpeg|png|gif)$/i', $formula)) {
+                // Armazenar a fórmula como link de imagem
+                $formula = '<img src="' . htmlspecialchars($formula) . '" alt="Imagem da fórmula" style="max-width:100%;">';
+            }
+    
             $termo = new Termo();
             $termo->salvar($nome, $materia_id, $oquee, $ondeusa, $exemplo, $formula);
-
+    
             // Mensagem de sucesso
             $mensagem = "Termo cadastrado com sucesso!";
             $termos = $termo->listarTermos(); // Atualize a função para listar todos os termos
@@ -30,6 +36,7 @@ class TermoController {
             include 'C:\xampp\htdocs\trabalho-finall\exatas\MVC\Views\ViewsTermos.php'; // Ajuste o caminho conforme necessário
         }
     }
+    
 
     public function editar() {
         $id = isset($_GET['id']) ? (int)$_GET['id'] : 0;

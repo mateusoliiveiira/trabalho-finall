@@ -7,6 +7,20 @@ $dbname = 'exatas';
 $username = 'root';
 $password = '';
 
+$materia_id = $_GET['id'];
+
+try {
+    $pdo = new PDO("mysql:host=$host;dbname=$dbname;charset=utf8", $username, $password);
+    $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+} catch (PDOException $e) {
+    die("Erro ao conectar: " . $e->getMessage());
+}
+
+// Recuperar os termos cadastrados
+$sql = 'SELECT * FROM termos WHERE materia_id = :materia_id';
+$stmt = $pdo->prepare($sql);
+$stmt->execute(['materia_id' => $materia_id]);
+$termos = $stmt->fetchAll(PDO::FETCH_ASSOC);
 try {
     $pdo = new PDO("mysql:host=$host;dbname=$dbname;charset=utf8", $username, $password);
     $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
@@ -80,19 +94,10 @@ if (isset($_GET['id'])) {
         
 
         <style>
-            a.log img {
-                width: 60px;
-                height: auto;
-                transition: transform 0.3s ease;
-                /* animação suave */
-            }
-
-            a.log img:hover {
-                transform: scale(1.2);
-                /* aumenta a imagem em 20% */
-            }
+         
+         
             .margin-left{
-                margin-left: 0em;
+                margin-left: -30px;
             }
 
         </style>
@@ -109,7 +114,31 @@ if (isset($_GET['id'])) {
             <button type="submit">Pesquisar</button>
         </form>
         <section>
-       =
+       
+<div class="container">
+    <h2 class="mt-5">Termos Cadastrados</h2>
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+                <th>Nome</th>
+                <th>O que é</th>
+                <th>Onde Usa</th>
+                <th>Exemplo</th>
+                <th>Fórmula</th>
+            </tr>
+        </thead>
+        <tbody>
+            <?php foreach ($termos as $termo) { ?>
+                <tr>
+                    <td><?php echo htmlspecialchars($termo['nome']); ?></td>
+                    <td><?php echo htmlspecialchars($termo['oquee']); ?></td>
+                    <td><?php echo htmlspecialchars($termo['ondeusa']); ?></td>
+                    <td><?php echo htmlspecialchars($termo['exemplo']); ?></td>
+                    <td><?php echo htmlspecialchars($termo['formula']); ?></td>
+                </tr>
+            <?php } ?>
+        </tbody>
+    </table>
         </ul>
     </section>
 </main>
