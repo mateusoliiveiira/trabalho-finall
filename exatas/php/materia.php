@@ -1,5 +1,3 @@
-
-
 <?php
 // Conectar ao banco de dados
 $host = 'localhost';
@@ -21,12 +19,6 @@ $sql = 'SELECT * FROM termos WHERE materia_id = :materia_id';
 $stmt = $pdo->prepare($sql);
 $stmt->execute(['materia_id' => $materia_id]);
 $termos = $stmt->fetchAll(PDO::FETCH_ASSOC);
-try {
-    $pdo = new PDO("mysql:host=$host;dbname=$dbname;charset=utf8", $username, $password);
-    $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-} catch (PDOException $e) {
-    die("Erro ao conectar: " . $e->getMessage());
-}
 
 // Função para buscar a matéria e seus termos associados pelo ID
 function obterMateriaETermos($pdo, $id, $nome = '') {
@@ -82,69 +74,88 @@ if (isset($_GET['id'])) {
     <link rel="stylesheet" href="../css/header.css">
     <title>Pesquisar Termos</title>
 </head>
-<body background="../img/fundo.png" >
+<body background="../img/fundo.png">
 
 <header>
-        <div class="cabecalho">
-            <a class="log" href="index.php"><img src="../img/digitar.png" width="100" height="100"></a>
-        </div>
-        <div class ="adicionar">
-           <h1 class="titulo margin-left">Matéria: <?php echo htmlspecialchars($dados['materia']['nome']); ?></h1> 
-        </div>
-        
+    <div class="cabecalho">
+        <a class="log" href="index.php"><img src="../img/digitar.png" width="100" height="100"></a>
+    </div>
+    <div class ="adicionar">
+        <h1 class="titulo margin-left">Matéria: <?php echo htmlspecialchars($dados['materia']['nome']); ?></h1> 
+    </div>
 
-        <style>
-         
-         
-            .margin-left{
-                margin-left: -30px;
-            }
+    <style>
+        .margin-left {
+            margin-left: -30px;
+        }
+        .item {
+            flex-basis: calc(33.33% - 20px); /* Define cada item para ocupar 1/3 da largura */
+            margin: 10px; /* Margem ao redor de cada card */
+            padding: 15px; /* Espaço interno */
+            background-color: white;
+            color: black; /* Ajuste a cor do texto, se necessário */
+            border-radius: 10px; /* Bordas arredondadas */
+            box-shadow: 1px 5px 5px #ccc; /* Sombra para o card */
+            display: flex; /* Usar flexbox para alinhar os conteúdos */
+            flex-direction: column; /* Coluna para o conteúdo */
+            text-align: center; /* Centraliza o conteúdo dentro do card */
+        }
+        h3 {
+            margin: 0; /* Remove margem padrão */
+        }
+        p {
+            text-align: left; /* Alinha o texto à esquerda */
+            margin: 5px 0; /* Margem vertical para espaçamento */
+        }
+    </style>
+</header>
 
-        </style>
+<main>
+    <!-- Formulário de pesquisa -->
+    <form action="lista.php?id=<?php echo htmlspecialchars($id); ?>" method="POST" class="search-form">
+        <input type="hidden" name="id" value="<?php echo htmlspecialchars($id); ?>">
+        <input type="text" id="nome" name="pesquisar_nome" placeholder="Digite o termo..." class="search-input">
+        <button type="submit">Pesquisar</button>
+    </form>
 
-
-        </a>
-    </header>
-
-    <main>
-        <!-- Formulário de pesquisa -->
-        <form action="lista.php?id=<?php echo htmlspecialchars($id); ?>" method="POST" class="search-form">
-            <input type="hidden" name="id" value="<?php echo htmlspecialchars($id); ?>">
-            <input type="text" id="nome" name="pesquisar_nome" placeholder="Digite o termo..." class="search-input">
-        </form>
-        <section>
-       
-<div class="container">
-    <h2 class="mt-5">Termos Cadastrados</h2>
-    <table class="table table-bordered">
-        <thead>
-            <tr>
-                <th>Nome</th>
+    <section>
+        <div class="container">
+            <h2 class="mt-5">Termos Cadastrados</h2>
+            <section>
                 
-            </tr>
-        </thead>
-        <tbody>
-            <?php foreach ($termos as $termo) { ?>
-                <tr>
-                    <td><?php echo htmlspecialchars($termo['nome']); ?></td>
-                 
-                </tr>
-            <?php } ?>
-        </tbody>
-    </table>
-        </ul>
+                <div class="row">
+                    
+                <?php foreach ($termos as $termo) { ?>
+                    <div class="item">
+    <h3><?php echo htmlspecialchars($termo['nome']); ?></h3>
+    <p><strong>O que é:</strong> <?php echo htmlspecialchars($termo['oquee']); ?></p>
+    
+    <?php
+    // Verifica se a chave 'imagem' existe
+    if (isset($termo['imagem']) && !empty($termo['imagem'])) {
+        $imagem = htmlspecialchars($termo['imagem']);
+    } else {
+        $imagem = '../img/default.png'; // Caminho da imagem padrão
+    }
+    ?>
+    
+    <img src="<?php echo $imagem; ?>" alt="Imagem de <?php echo htmlspecialchars($termo['nome']); ?>" style="max-width: 100%; height: auto; margin: 10px 0;">
+    
+    <!-- Adicionando o link para mais detalhes do termo -->
+    <a href="detalhes_termo.php?id=<?php echo $termo['id']; ?>" class="btn btn-primary mt-3">Ver Detalhes</a>
+</div>
+
+<?php } ?>
+
+                </div>
+            </section>
+        </div>
     </section>
-</main>
-    </main>
 
     <footer>
         <div class="container-botao-materia">
-        <a href="cadastrar-matematica.php?id=<?php echo $id; ?>"> <button class="botao-materia">+ Adicionar Termo</button></a>
+            <a href="admin.php?id=<?php echo $id; ?>"> <button class="botao-materia">+ Adicionar Termo</button></a>
         </div>
     </footer>
 </body>
 </html>
-
-
-
-

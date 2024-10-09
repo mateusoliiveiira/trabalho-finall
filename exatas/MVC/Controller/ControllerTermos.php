@@ -4,39 +4,43 @@ require_once 'C:\xampp\htdocs\trabalho-finall\exatas\MVC\Model\ModelTermos.php';
 class TermoController {
     public function index() {
         $termo = new Termo();
-        $termos = $termo->listarTermos(); // Atualize a função para listar todos os termos
-        $materias = $termo->listarMaterias();
+        $termos = $termo->listarTermos(); // Lista todos os termos
+        $materias = $termo->listarMaterias(); // Lista todas as matérias
         
-        // Inclua a view passando as variáveis necessárias
-        include 'C:\xampp\htdocs\trabalho-finall\exatas\MVC\Views\ViewsTermos.php'; // Ajuste o caminho conforme necessário
+        // Inclui a view passando as variáveis necessárias
+        include 'C:\xampp\htdocs\trabalho-finall\exatas\MVC\Views\ViewsTermos.php';
     }
 
     public function salvar() {
-        if (isset($_POST['nome'], $_POST['materia_id'], $_POST['oquee'], $_POST['ondeusa'], $_POST['exemplo'], $_POST['formula'])) {
+        if (isset($_POST['nome'], $_POST['materia_id'], $_POST['oquee'], $_POST['ondeusa'], $_POST['exemplo']) && isset($_FILES['imagem'])) {
             $nome = $_POST['nome'];
             $materia_id = $_POST['materia_id'];
             $oquee = $_POST['oquee'];
             $ondeusa = $_POST['ondeusa'];
             $exemplo = $_POST['exemplo'];
-            $formula = $_POST['formula'];
-    
-            // Verificar se a fórmula é um link de imagem
-            if (filter_var($formula, FILTER_VALIDATE_URL) && preg_match('/\.(jpg|jpeg|png|gif)$/i', $formula)) {
-                // Armazenar a fórmula como link de imagem
-                $formula = '<img src="' . htmlspecialchars($formula) . '" alt="Imagem da fórmula" style="max-width:100%;">';
+
+            // Processar upload da imagem
+            $imagem = $_FILES['imagem'];
+            $uploadDir = '../uploads'; // Pasta para armazenar imagens
+            $uploadFile = $uploadDir . basename($imagem['name']);
+
+            // Mover o arquivo para a pasta de uploads
+            if (move_uploaded_file($imagem['tmp_name'], $uploadFile)) {
+                // Salvar o caminho da imagem no banco de dados
+                $termo = new Termo();
+                $termo->salvar($nome, $materia_id, $oquee, $ondeusa, $exemplo, $uploadFile);
+
+                // Mensagem de sucesso
+                $mensagem = "Termo cadastrado com sucesso!";
+            } else {
+                $mensagem = "Erro ao fazer upload da imagem.";
             }
-    
-            $termo = new Termo();
-            $termo->salvar($nome, $materia_id, $oquee, $ondeusa, $exemplo, $formula);
-    
-            // Mensagem de sucesso
-            $mensagem = "Termo cadastrado com sucesso!";
-            $termos = $termo->listarTermos(); // Atualize a função para listar todos os termos
-            $materias = $termo->listarMaterias();
+
+            $termos = $termo->listarTermos(); // Atualiza a lista de termos
+            $materias = $termo->listarMaterias(); // Atualiza a lista de matérias
             include 'C:\xampp\htdocs\trabalho-finall\exatas\MVC\Views\ViewsTermos.php'; // Ajuste o caminho conforme necessário
         }
     }
-    
 
     public function editar() {
         $id = isset($_GET['id']) ? (int)$_GET['id'] : 0;
@@ -50,14 +54,14 @@ class TermoController {
             $oquee = $_POST['oquee'];
             $ondeusa = $_POST['ondeusa'];
             $exemplo = $_POST['exemplo'];
-            $formula = $_POST['formula'];
 
-            $termo->atualizar($id, $nome, $materia_id, $oquee, $ondeusa, $exemplo, $formula);
+            // Atualiza o termo no banco
+            $termo->atualizar($id, $nome, $materia_id, $oquee, $ondeusa, $exemplo);
 
             // Mensagem de sucesso
             $mensagem = "Termo atualizado com sucesso!";
-            $termos = $termo->listarTermos(); // Atualize a função para listar todos os termos
-            $materias = $termo->listarMaterias();
+            $termos = $termo->listarTermos(); // Atualiza a lista de termos
+            $materias = $termo->listarMaterias(); // Atualiza a lista de matérias
             include 'C:\xampp\htdocs\trabalho-finall\exatas\MVC\Views\ViewsTermos.php'; // Ajuste o caminho conforme necessário
         } else {
             include 'C:\xampp\htdocs\trabalho-finall\exatas\MVC\Views\EditarTermo.php'; // Ajuste o caminho conforme necessário
@@ -71,8 +75,8 @@ class TermoController {
 
         // Mensagem de sucesso
         $mensagem = "Termo excluído com sucesso!";
-        $termos = $termo->listarTermos(); // Atualize a função para listar todos os termos
-        $materias = $termo->listarMaterias();
+        $termos = $termo->listarTermos(); // Atualiza a lista de termos
+        $materias = $termo->listarMaterias(); // Atualiza a lista de matérias
         include 'C:\xampp\htdocs\trabalho-finall\exatas\MVC\Views\ViewsTermos.php'; // Ajuste o caminho conforme necessário
     }
 }

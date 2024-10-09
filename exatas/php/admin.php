@@ -45,7 +45,7 @@ if (isset($_POST['update_permissions'])) {
 <head>
     <title>Definir Permissões</title>
     <meta charset="utf-8">
-    <link rel="stylesheet" href="../css/styles.css">
+    <link rel="stylesheet" href="../css/adm.css">
 </head>
 
 <body>
@@ -92,6 +92,7 @@ if (isset($_POST['update_permissions'])) {
             </tbody>
         </table>
     </div>
+    <a href="index.php">Ir Para o Index</a>
 </body>
 
 </html>
