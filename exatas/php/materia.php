@@ -1,3 +1,5 @@
+
+
 <?php
 // Conectar ao banco de dados
 $host = 'localhost';
@@ -14,7 +16,20 @@ try {
     die("Erro ao conectar: " . $e->getMessage());
 }
 
-function obterMateriaETermos($pdo, $materia_id, $nome = '') {
+// Recuperar os termos cadastrados
+$sql = 'SELECT * FROM termos WHERE materia_id = :materia_id';
+$stmt = $pdo->prepare($sql);
+$stmt->execute(['materia_id' => $materia_id]);
+$termos = $stmt->fetchAll(PDO::FETCH_ASSOC);
+try {
+    $pdo = new PDO("mysql:host=$host;dbname=$dbname;charset=utf8", $username, $password);
+    $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+} catch (PDOException $e) {
+    die("Erro ao conectar: " . $e->getMessage());
+}
+
+// Função para buscar a matéria e seus termos associados pelo ID
+function obterMateriaETermos($pdo, $id, $nome = '') {
     // Buscar a matéria pelo ID
     $sqlMateria = 'SELECT * FROM materias WHERE id = :id';
     $stmtMateria = $pdo->prepare($sqlMateria);
@@ -25,14 +40,16 @@ function obterMateriaETermos($pdo, $materia_id, $nome = '') {
     
     try {
         // Executar a consulta da matéria
-        $stmtMateria->execute(['id' => $materia_id]);
+        $stmtMateria->execute(['id' => $id]);
         $materia = $stmtMateria->fetch(PDO::FETCH_ASSOC);
+
         // Executar a consulta dos termos associados
         $stmtTermos->execute([
-            'id' => $materia_id,
+            'id' => $id,
             'nome' => "%$nome%"
         ]);
         $termos = $stmtTermos->fetchAll(PDO::FETCH_ASSOC);
+
         // Retornar a matéria e seus termos
         return ['materia' => $materia, 'termos' => $termos];
     } catch (PDOException $e) {
@@ -40,14 +57,16 @@ function obterMateriaETermos($pdo, $materia_id, $nome = '') {
     }
 }
 
-
-
 // Verificar se o ID da matéria foi passado
 if (isset($_GET['id'])) {
     $id = $_GET['id'];
-
     $nome = isset($_POST['pesquisar_nome']) ? $_POST['pesquisar_nome'] : '';
-    $dados = obterMateriaETermos($pdo, $materia_id, $nome);
+    $dados = obterMateriaETermos($pdo, $id, $nome);
+    
+    // Verificar se a matéria existe
+    if (!$dados['materia']) {
+        die("Matéria não encontrada.");
+    }
 } else {
     die("ID da matéria não fornecido.");
 }
@@ -75,19 +94,10 @@ if (isset($_GET['id'])) {
         
 
         <style>
-            a.log img {
-                width: 60px;
-                height: auto;
-                transition: transform 0.3s ease;
-                /* animação suave */
-            }
-
-            a.log img:hover {
-                transform: scale(1.2);
-                /* aumenta a imagem em 20% */
-            }
+         
+         
             .margin-left{
-                margin-left: 0em;
+                margin-left: -30px;
             }
 
         </style>
@@ -102,6 +112,29 @@ if (isset($_GET['id'])) {
             <input type="hidden" name="id" value="<?php echo htmlspecialchars($id); ?>">
             <input type="text" id="nome" name="pesquisar_nome" placeholder="Digite o termo..." class="search-input">
         </form>
+        <section>
+       
+<div class="container">
+    <h2 class="mt-5">Termos Cadastrados</h2>
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+                <th>Nome</th>
+                
+            </tr>
+        </thead>
+        <tbody>
+            <?php foreach ($termos as $termo) { ?>
+                <tr>
+                    <td><?php echo htmlspecialchars($termo['nome']); ?></td>
+                 
+                </tr>
+            <?php } ?>
+        </tbody>
+    </table>
+        </ul>
+    </section>
+</main>
     </main>
 
     <footer>
@@ -111,3 +144,7 @@ if (isset($_GET['id'])) {
     </footer>
 </body>
 </html>
+
+
+
+

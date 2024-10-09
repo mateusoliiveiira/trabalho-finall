@@ -65,12 +65,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['nome'], $_POST['oquee
 <body>
 <header>
         <div class="cabecalho">
-            <a class="log" href="materia.php?id=<?php echo $id; ?>"><img src="../img/digitar.png" width="100" height="100"></a>
+            <a class="log" href="index.php"><img src="../img/digitar.png" width="100" height="100"></a>
         </div>
         <div class ="adicionar">
            <h1 class="titulo margin-left">Adicionar termo</h1> 
         </div>
-        
 
         <style>
             a.log img {
@@ -90,9 +89,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['nome'], $_POST['oquee
 
         </style>
 
-
-        </a>
+        
     </header>
+    
     <?php if (isset($mensagem)) { ?>
         <p><?php echo htmlspecialchars($mensagem); ?></p>
     <?php } ?>
@@ -120,7 +119,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['nome'], $_POST['oquee
             </div>
 
             <div class="section">
-                <div class="title">Fórmula:</div>
+                <div class="title">Fórmula (coloque um link de imagem, se houver):</div>
                 <textarea id="formula" name="formula" required></textarea>
             </div>
 

@@ -1,105 +1,317 @@
 @import url('https://fonts.googleapis.com/css2?family=Jomhuria&display=swap');
 
-body{
- background-color: rgb(255, 255, 255) ;
- font-family:Jomhuria ;
+body {
+    background-color: rgb(255, 255, 255);
+    font-family: Jomhuria;
+    animation: background-color-change 10s infinite alternate;
 }
-header{
+
+header {
     background-color: #004AAD;
     width: 100%;
     height: 150px;
 }
-main{
+
+main {
     background-color: rgb(255, 255, 255);
     width: 100%;
     height: 70vh;
-  
 }
-footer{
+
+footer {
     background-color: wheat;
     width: 100%;
     height: 170px;
 }
 
-.titulo{
-  text-align:center;
-  font-size: 150px;
-  margin-top: -10px;
-  color: rgb(255, 255, 255);
-  text-shadow: 
+.titulo {
+    text-align: center;
+    font-size: 150px;
+    margin-top: -10px;
+    color: rgb(255, 255, 255);
+    text-shadow: 
         -1px -1px 0 black,  
         1px -1px 0 black,  
         -1px 1px 0 black,  
         1px 1px 0 black;
+    animation: text-color-change 5s infinite alternate;
 }
+
 .banner {
     width: 100%;
     height: 100%;
     border-width: 40px 50px;
     border-style: solid;
-border-color: rgb(255, 255, 255);
-  }
+    border-color: rgb(255, 255, 255);
+}
 
-  .botao-materia {
+.botao-materia {
     width: 80vw;
-    background-color: #004AAD; /* Cor azul */
-    color: white; /* Cor do texto */
+    background-color: #004AAD;
+    color: white;
     padding: 35px 0;
     text-align: center;
     cursor: pointer;
-    transition: background-color 300ms; 
-    font-family:Jomhuria ;
+    transition: background-color 300ms;
+    font-family: Jomhuria;
     font-size: 80px;
     width: 93%;
     text-decoration: none;
-    ;
+}
 
-  }
-  
-  .botao-materia:hover {
-    background-color: #005dc0; /* Cor azul escuro no hover */
+.botao-materia:hover {
+    background-color: #005dc0;
     transition: 300ms;
-  }
-  
-  .botao-materia:active {
+}
+
+.botao-materia:active {
     background-color: #004093;
     transition: 100ms;
-  }
-  
-  .container-botao-materia {
+}
+
+.container-botao-materia {
     display: flex;
     justify-content: center;
     align-items: center;
     margin-bottom: 20px;
-  }
+}
 
-  .botao-adicionar-materia{
+.botao-adicionar-materia {
     width: 45vw;
-    background-color: #b9b9b9; /* Cor azul */
-    color: rgb(255, 255, 255); /* Cor do texto */
+    background-color: #b9b9b9;
+    color: rgb(255, 255, 255);
     padding: 25px 0;
     border: none;
     border-radius: 2px;
     text-align: center;
     cursor: pointer;
-    transition: background-color 300ms; 
+    transition: background-color 300ms;
     font-size: 60px;
-  margin-top: 1%;
-  }
-  
-  .botao-adicionar-materia:hover {
-    background-color: #cdcdcd; /* Cor azul escuro no hover */
+    margin-top: 1%;
+}
+
+.botao-adicionar-materia:hover {
+    background-color: #cdcdcd;
     transition: 300ms;
-  }
-  
-  .botao-adicionar-materia:active {
+}
+
+.botao-adicionar-materia:active {
     background-color: #919191;
     transition: 100ms;
-  }
-  
-  .container-botao-adicionar-materia {
+}
+
+.container-botao-adicionar-materia {
     display: flex;
     justify-content: center;
     align-items: center;
+}
+
+/* Animações */
+@keyframes text-color-change {
+    0% { color: rgb(255, 0, 0); }
+    25% { color: rgb(0, 255, 0); }
+    50% { color: rgb(0, 0, 255); }
+    75% { color: rgb(255, 255, 0); }
+    100% { color: rgb(0, 255, 255); }
+}
+
+@keyframes background-color-change {
+    0% { background-color: rgb(255, 255, 255); }
+    50% { background-color: rgb(240, 240, 240); }
+    100% { background-color: rgb(255, 255, 255); }
+}
+#sky {
+  position: relative;
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+}
+
+.foguete {
+  position: absolute;
+  width: 5px;
+  height: 20px;
+  background-color: white;
+  border-radius: 50%;
+  box-shadow: 0 0 10px rgba(255, 255, 255, 0.8);
+  transform: translateY(100vh);
+  animation: firework-launch 3s ease-in-out infinite;
+}
+
+@keyframes firework-launch {
+  0% {
+      transform: translateY(100vh) scale(0.5);
+      opacity: 1;
   }
-  
+  80% {
+      opacity: 1;
+  }
+  100% {
+      transform: translateY(-10vh) scale(0);
+      opacity: 0;
+  }
+}
+
+.explosao {
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background-color: yellow;
+  opacity: 0;
+  animation: explosion-animation 0.5s ease-out forwards;
+}
+
+@keyframes explosion-animation {
+  0% {
+      opacity: 1;
+      transform: scale(0.1);
+  }
+  100% {
+      opacity: 0;
+      transform: scale(3);
+  }
+}
+#loading-screen {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(255, 255, 255, 0.8); /* Fundo branco com opacidade */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999; /* Garantir que fique acima de outros elementos */
+  transition: opacity 0.5s ease;
+}
+
+.loader {
+  border: 16px solid #f3f3f3; /* Cor do fundo */
+  border-top: 16px solid #3498db; /* Cor do carregamento */
+  border-radius: 50%;
+  width: 60px; /* Largura do loader */
+  height: 60px; /* Altura do loader */
+  animation: spin 2s linear infinite; /* Animação de rotação */
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+p {
+  margin-top: 20px; /* Espaçamento acima do texto */
+  font-size: 20px; /* Tamanho do texto */
+  color: #333; /* Cor do texto */
+}
+#welcome-message {
+  text-align: center;
+  margin-top: 20px; /* Espaço acima da mensagem */
+  font-size: 24px; /* Tamanho do texto */
+  color: #333; /* Cor do texto */
+  opacity: 0; /* Inicialmente invisível */
+  transition: opacity 0.5s ease; /* Transição suave */
+}
+
+#welcome-message.visible {
+  opacity: 1; /* Torna visível quando a classe 'visible' é adicionada */
+}
+.name {
+  font-family: 'Montserrat', sans-serif;
+  color: #2c3e50;
+  font-size: 1.0rem;
+  font-weight: 700;
+  text-align: center;
+  margin-top: 20px;
+  padding: 10px;
+  border: 2px solid #3498db;
+  background-color: #ecf0f1;
+  border-radius: 10px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  position: absolute;
+  top: 24px;
+  margin-left: 76%;
+}
+
+/* CSS para o link de logout */
+.logout-link {
+  display: inline-block;
+  font-family: 'Montserrat', sans-serif;
+  color: #e74c3c;
+  font-size: 1rem;
+  font-weight: 400;
+  text-decoration: none;
+  padding: 10px 20px;
+  border: 2px solid #e74c3c;
+  border-radius: 5px;
+  margin-top: 15px;
+  text-align: center;
+  width: fit-content;
+  background-color: #f2f2f2;
+  transition: background-color 0.3s ease, color 0.3s ease;
+  position: absolute;
+  top: 28px;
+  left: 92%;
+}
+
+.logout-link:hover {
+  background-color: #e74c3c;
+  color: #fff;
+} .logout-link:hover {
+  background-color: #e74c3c;
+  color: #fff;
+}
+
+/* Estilo para a modal */
+.modal {
+  display: none; /* Oculta a modal por padrão */
+  position: fixed; /* Fixa a modal na tela */
+  z-index: 1; /* Fica acima do conteúdo */
+  left: 0;
+  top: 0;
+  width: 100%; /* Largura total */
+  height: 100%; /* Altura total */
+  overflow: auto; /* Adiciona rolagem se necessário */
+  background-color: rgb(0,0,0); /* Fundo preto */
+  background-color: rgba(0,0,0,0.4); /* Fundo preto com opacidade */
+  padding-top: 60px; /* Espaço acima da modal */
+}
+
+/* Estilo para o conteúdo da modal */
+.modal-content {
+  background-color: #fefefe;
+  margin: 5% auto; /* Margem automática */
+  padding: 20px;
+  border: 1px solid #888;
+  width: 80%; /* Largura da modal */
+  max-width: 400px; /* Largura máxima da modal */
+  border-radius: 10px; /* Bordas arredondadas */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Sombra */
+}
+
+/* Botões da modal */
+.modal-button {
+  background-color: #3498db; /* Cor do botão */
+  color: white; /* Cor do texto */
+  border: none; /* Sem borda */
+  padding: 10px 20px; /* Espaçamento interno */
+  margin: 5px; /* Margem entre botões */
+  border-radius: 5px; /* Bordas arredondadas */
+  cursor: pointer; /* Cursor de ponteiro */
+  transition: background-color 0.3s; /* Efeito de transição */
+}
+
+.modal-button:hover {
+  background-color: #2980b9; /* Cor do botão ao passar o mouse */
+}
+
+/* Botão de cancelar */
+.cancel-button {
+  background-color: #e74c3c; /* Cor do botão de cancelar */
+}
+
+.cancel-button:hover {
+  background-color: #c0392b; /* Cor do botão de cancelar ao passar o mouse */
+}

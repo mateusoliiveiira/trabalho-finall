@@ -1,180 +1,107 @@
-.botao-materia {
-    width: 80vw;
-    background-color: #004AAD; /* Cor azul */
-    color: white; /* Cor do texto */
-    padding: 35px 0;
-    border: none;
-    border-radius: 2px;
+/* search.css */
+
+/* Estilizando o corpo da página */
+body {
+    background-image: url('../img/fundo.png');
+    background-size: cover;
+    background-repeat: no-repeat;
+    font-family: 'Jomhuria', cursive;
+    color: #333;
+}
+
+/* Estilizando o cabeçalho */
+header {
+    background-color: rgba(255, 255, 255, 0.9);
+    padding: 20px;
     text-align: center;
-    font-size: 16px;
-    cursor: pointer;
-    transition: background-color 300ms; 
-  }
-  
-  .botao-materia:hover {
-    background-color: #005dc0; /* Cor azul escuro no hover */
-    transition: 300ms;
-  }
-  
-  .botao-materia:active {
-    background-color: #004093;
-    transition: 100ms;
-  }
-  
-  .container-botao-materia {
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.cabecalho .log img {
+    max-width: 100%;
+    height: auto;
+}
+
+.titulo {
+    font-size: 24px;
+    margin-top: 10px;
+}
+
+/* Estilizando o formulário de pesquisa */
+.search-form {
     display: flex;
     justify-content: center;
-    align-items: center;
-  }
-
-  .botao-materia a {
-    text-decoration: none;
-    color: white;
-    font-size: 30px;
-  }
-
-  /* Estilização da contêiner de busca */
-.search-container {
-    display: flex;
-    align-items: center;
-    max-width: 500px;
-    margin: 0 auto;
-    border-radius: 25px;
-    overflow: hidden;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    margin: 20px 0;
 }
 
+.search-input {
+    padding: 10px;
+    border: 2px solid #007bff;
+    border-radius: 5px;
+    width: 300px;
+    transition: border-color 0.3s;
+}
 
+.search-input:focus {
+    outline: none;
+    border-color: #0056b3;
+}
 
-/* Estilização do botão de busca */
-.search-button {
+button[type="submit"] {
+    padding: 10px 20px;
+    border: none;
     background-color: #007bff;
     color: white;
-    border: none;
-    padding: 10px 20px;
-    font-size: 16px;
+    border-radius: 5px;
+    margin-left: 10px;
     cursor: pointer;
-    border-radius: 0 25px 25px 0;
-    transition: background-color 0.3s ease;
+    transition: background-color 0.3s;
 }
 
-.search-button:hover {
+button[type="submit"]:hover {
     background-color: #0056b3;
 }
 
-/* Estilização do contêiner do formulário */
-.form-container {
-    max-width: 500px;
-    margin: 0 auto;
-    padding: 20px;
-    border-radius: 8px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    background-color: #f9f9f9;
-    display: flex;
-    flex-direction: column;
-    gap: 10px; /* Espaçamento entre os elementos */
+/* Estilizando a tabela */
+.table {
+    margin-top: 30px;
+    background-color: rgba(255, 255, 255, 0.8);
+    border-radius: 5px;
+    overflow: hidden;
 }
 
-/* Estilização do corpo da página */
-
-/* Estilização do formulário de busca */
-.search-form {
-  display: flex;
-  width: 100%;
-  max-width: 500px;
-  padding: 15px;
-  border-radius: 8px;
-  justify-content: center;
-  margin-top: -30vw;
+.table th {
+    background-color: #007bff;
+    color: white;
+    padding: 10px;
 }
 
-/* Estilização do campo de entrada */
-.search-input {
-    width: 100%;
-    padding: 10px 300px 10px 10px;   
-    border: none;
-    border-radius: 4px;
-    outline: none;
-    font-size: 30px;
-    background-color: #d6d6d6; /* Fundo branco para o campo de entrada */
+.table td {
+    padding: 10px;
+    border-bottom: 1px solid #ddd;
 }
 
-main {
-  flex: 1; /* Permite que main ocupe todo o espaço disponível entre o header e o footer */
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  padding-top: 100px; /* Espaço para o header fixo */
-  padding-bottom: 60px; /* Espaço para o footer fixo */
-}
-
+/* Estilizando o rodapé */
 footer {
-  width: 100%;
-  background-color: #004AAD;
-  text-align: center;
-  padding: 20px 0;
-  position: fixed;
-  bottom: 0;
-  left: 0;
-  z-index: 10; /* Garante que fique por cima de outros elementos */
+    text-align: center;
+    margin: 20px 0;
 }
 
-/* Estilização do botão "Adicionar Termo" */
-footer .botao-materia {
-  width: 80vw;
-  background-color: #0455be;
-  color: white;
-  padding: 15px 0;
-  border: none;
-  border-radius: 2px;
-  font-size: 30px;
-  cursor: pointer;
-}
-
-footer .botao-materia:hover {
-  background-color: #0477f1;
-}
-
-/* Estilização do link dentro do botão */
-footer .botao-materia a {
-  text-decoration: none;
-  color: white;
-  font-size: 30px;
-}
-
-/* Efeito no botão quando pressionado */
-footer .botao-materia:active {
-  background-color: #004093;
-  transition: 100ms;
-}
-
-body {
-  
+.container-botao-materia {
+    display: flex;
     justify-content: center;
-      align-items: center;
-      min-height: 100vh; /* Garante que a altura total seja a da janela */
-
-  
-  background-repeat: no-repeat; /* Evita que a imagem se repita */
-  background-size: cover; /* Estica a imagem para cobrir toda a área */
-  background-position: center; /* Centraliza a imagem */
-
 }
 
-.botao-submateria {
-  padding: 10px 20px; /* Ajustar o padding conforme necessário */
-  border: 1px solid rgb(190, 190, 190);
-  background-color: white; /* Cor de fundo */
-  border-radius: 3px; /* Bordas arredondadas */
-  color: #4169e1; /* Cor do texto */
-  font-weight: bold; /* Negrito */
-  text-decoration: none; /* Remove o sublinhado */
-  display: inline-block; /* Para garantir que o padding funcione corretamente */
-  transition: box-shadow 500ms; /* Efeito de transição */
+.botao-materia {
+    padding: 10px 20px;
+    border: none;
+    background-color: #28a745;
+    color: white;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
 }
 
-.botao-submateria:hover {
-  cursor: pointer; /* Muda o cursor para pointer */
-  box-shadow: 0 1.5px 5px rgba(0, 0, 0, 0.3); /* Sombra ao passar o mouse */
-  transition: box-shadow 500ms; /* Efeito de transição */
+.botao-materia:hover {
+    background-color: #218838;
 }

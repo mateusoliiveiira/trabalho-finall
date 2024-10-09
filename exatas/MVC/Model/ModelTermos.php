@@ -21,6 +21,12 @@ class Termo {
     }
 
     public function salvar($nome, $materia_id, $oquee, $ondeusa, $exemplo, $formula) {
+        // Verificar se a fórmula é um link de imagem
+        if (filter_var($formula, FILTER_VALIDATE_URL) && preg_match('/\.(jpg|jpeg|png|gif)$/i', $formula)) {
+            // Transformar a fórmula em uma tag <img>
+            $formula = '<img src="' . htmlspecialchars($formula) . '" alt="Imagem da fórmula" style="max-width:100%;">';
+        }
+    
         $sql = "INSERT INTO termos (nome, materia_id, oquee, ondeusa, exemplo, formula) VALUES (?, ?, ?, ?, ?, ?)";
         $stmt = $this->pdo->prepare($sql);
         $stmt->execute([$nome, $materia_id, $oquee, $ondeusa, $exemplo, $formula]);
@@ -34,15 +40,17 @@ class Termo {
     }
 
     public function atualizar($id, $nome, $materia_id, $oquee, $ondeusa, $exemplo, $formula) {
-        $sql = "UPDATE termos SET nome = ?, materia_id = ?, oquee = ?, ondeusa = ?, exemplo = ?, formula = ? WHERE id = ?";
-        $stmt = $this->pdo->prepare($sql);
-        $stmt->execute([$nome, $materia_id, $oquee, $ondeusa, $exemplo, $formula, $id]);
+        // Verificar se a fórmula é um link de imagem
+        if (filter_var($formula, FILTER_VALIDATE_URL) && preg_match('/\.(jpg|jpeg|png|gif)$/i', $formula)) {
+            // Transformar a fórmula em uma tag <img>
+            $formula = '<img src="' . htmlspecialchars($formula) . '" alt="Imagem da fórmula" style="max-width:100%;">';
+        }
     }
-
     public function excluir($id) {
         $sql = "DELETE FROM termos WHERE id = ?";
         $stmt = $this->pdo->prepare($sql);
         $stmt->execute([$id]);
     }
 }
+
 ?>

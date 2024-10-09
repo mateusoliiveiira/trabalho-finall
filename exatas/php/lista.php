@@ -93,12 +93,9 @@ if (isset($_GET['id'])) {
         <?php if (!empty($dados['termos'])): ?>
             <div class="accordion">
                 <?php foreach ($dados['termos'] as $termo): ?>
-                    <div class="accordion-item">
-                        <button class="accordion-header">ID</button>
-                        <div class="accordion-content">
-                            <?php echo htmlspecialchars($termo['id']); ?>
-                        </div>
-                    </div>
+               
+                
+                 
                     
                     <div class="accordion-item">
                         <button class="accordion-header">O que é?</button>
@@ -122,11 +119,42 @@ if (isset($_GET['id'])) {
                     </div>
 
                     <div class="accordion-item">
-                        <button class="accordion-header">Fórmula</button>
-                        <div class="accordion-content">
-                            <?php echo htmlspecialchars($termo['formula']); ?>
-                        </div>
-                    </div>
+    <button class="accordion-header">Fórmula</button>
+    <div class="accordion-content">
+        <?php 
+        $formula = $termo['formula'];
+
+        // Verifica se a fórmula contém um link válido de imagem
+        if (filter_var($formula, FILTER_VALIDATE_URL) && preg_match('/\.(jpg|jpeg|png|gif)$/i', $formula)) {
+            // Exibe a imagem se for uma URL válida
+            echo '<img src="' . htmlspecialchars($formula) . '" alt="Imagem da fórmula" style="max-width:100%;">';
+        } else {
+            // Exibe como texto se não for uma URL de imagem
+            echo htmlspecialchars($formula);
+        }
+        ?>
+    </div>
+</div>
+
+    <div class="accordion-content">
+        <?php 
+        // Verifica se a fórmula contém um link válido de imagem
+        $formula = $termo['formula'];
+        
+        // Verifica se é uma URL e termina com extensões de imagem (jpg, png, gif)
+        if (filter_var($formula, FILTER_VALIDATE_URL) && preg_match('/\.(jpg|jpeg|png|gif)$/i', $formula)) {
+            // Exibe a imagem
+            echo '<img src="' . $formula . '" alt="Imagem da fórmula" style="max-width:100%;">';
+        } else {
+            // Exibe como texto se não for imagem
+            echo htmlspecialchars($formula);
+        }
+        ?>
+    </div>
+</div>
+
+</div>
+
                 <?php endforeach; ?>
             </div>
         <?php else: ?>
