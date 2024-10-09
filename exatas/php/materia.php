@@ -114,25 +114,19 @@ if (isset($_GET['id'])) {
         </form>
         <section>
        
-<div class="container">
+        <div class="container">
     <h2 class="mt-5">Termos Cadastrados</h2>
     <table class="table table-bordered">
-        <thead>
-            <tr>
-                <th>Nome</th>
-                
-            </tr>
-        </thead>
         <tbody>
             <?php foreach ($termos as $termo) { ?>
                 <tr>
                     <td><?php echo htmlspecialchars($termo['nome']); ?></td>
-                 
                 </tr>
             <?php } ?>
         </tbody>
     </table>
-        </ul>
+</div>
+
     </section>
 </main>
     </main>
