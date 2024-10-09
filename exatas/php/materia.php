@@ -111,7 +111,6 @@ if (isset($_GET['id'])) {
         <form action="lista.php?id=<?php echo htmlspecialchars($id); ?>" method="POST" class="search-form">
             <input type="hidden" name="id" value="<?php echo htmlspecialchars($id); ?>">
             <input type="text" id="nome" name="pesquisar_nome" placeholder="Digite o termo..." class="search-input">
-            <button type="submit">Pesquisar</button>
         </form>
         <section>
        

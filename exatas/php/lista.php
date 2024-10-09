@@ -65,12 +65,27 @@ if (isset($_GET['id'])) {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../css/lista.css">
     <link rel="stylesheet" href="../css/headerTermo.css">
-    <title><?php echo htmlspecialchars($dados['materia']['nome']); ?></title>
+    
+    <title>
+        <?php
+        if (!empty($dados['termos'])) {
+            echo htmlspecialchars($dados['termos'][0]['nome']); // Exibe o nome do primeiro termo
+        } else {
+            echo "Sem termos disponíveis";
+        }
+        ?>
+    </title>
 </head>
 <body>
     <header>
         <div class="header-dado">
-            Matéria: <?php echo htmlspecialchars($dados['materia']['nome']); ?>
+            <?php
+            if (!empty($dados['termos'])) {
+                echo htmlspecialchars($dados['termos'][0]['nome']); // Exibe o nome do primeiro termo
+            } else {
+                echo "Sem termos disponíveis";
+            }
+            ?>
         </div>
     </header>
 
