@@ -138,7 +138,7 @@ label {
 }
 
 button {
-    background-color: #004AAD; /* Cor azul que combina com seu site */
+    background-color: #004AAD; /* Cor azul */
     color: #fff;
     border: none;
     padding: 10px 30px; /* Tamanho maior nos botões */
@@ -149,7 +149,11 @@ button {
     text-transform: uppercase;
     box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1); /* Sombra leve para destacar */
     margin-top: 15px; /* Margem superior para separar do formulário */
+    display: block; /* Faz o botão se comportar como um bloco */
+    margin-left: auto; /* Margem automática à esquerda */
+    margin-right: auto; /* Margem automática à direita */
 }
+
 
 button:hover {
     background-color: #003680; /* Azul mais escuro no hover */

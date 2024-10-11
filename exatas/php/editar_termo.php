@@ -45,11 +45,12 @@ $materias = $pdo->query($sql)->fetchAll(PDO::FETCH_ASSOC);
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../css/adm.css">
     <title>Editar Termo</title>
 </head>
-<body>
-    <h1>Editar Termo</h1>
-    <form action="editar_termo.php" method="POST">
+<body>  <form action="editar_termo.php" method="POST">
+<h1>Editar Termo</h1>
+  
         <input type="hidden" name="id" value="<?php echo htmlspecialchars($termo['id']); ?>">
 
         <label for="nome">Nome do Termo:</label>

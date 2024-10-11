@@ -78,9 +78,6 @@ if ($materia_id) {
     </div>
 
     <style>
-        .margin-left {
-            margin-left: -30px;
-        }
         .item {
             flex-basis: calc(33.33% - 20px);
             margin: 10px;

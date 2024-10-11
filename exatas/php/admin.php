@@ -133,15 +133,10 @@ if (isset($_POST['update_permissions'])) {
 <head>
     <title>Definir Permissões</title>
     <meta charset="utf-8">
-<<<<<<< HEAD
-<<<<<<< HEAD
+
     <link rel="stylesheet" href="../css/styles.css">
-=======
     <link rel="stylesheet" href="../css/adm.css">
->>>>>>> 4f572935df46f14978b8f24d776a7a7728d3ce70
-=======
     <link rel="stylesheet" href="../css/adm.css">
->>>>>>> ca4f018ff8b7d96575551c8f7ad61092f5fabdfb
 </head>
 
 <body>
@@ -164,7 +159,6 @@ if (isset($_POST['update_permissions'])) {
                     <th>Nome Completo</th>
                     <th>Email</th>
                     <th>Tipo de Funcionário</th>
-                    <th>Ação</th>
                 </tr>
             </thead>
             <tbody>
@@ -188,14 +182,9 @@ if (isset($_POST['update_permissions'])) {
             </tbody>
         </table>
     </div>
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
+
     <a href="index.php">Ir Para o Index</a>
->>>>>>> 4f572935df46f14978b8f24d776a7a7728d3ce70
-=======
     <a href="index.php">Ir Para o Index</a>
->>>>>>> ca4f018ff8b7d96575551c8f7ad61092f5fabdfb
 </body>
 
 </html>
