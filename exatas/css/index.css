@@ -314,4 +314,18 @@ p {
 
 .cancel-button:hover {
   background-color: #c0392b; /* Cor do botão de cancelar ao passar o mouse */
+}.btn-admin {
+  display: inline-block; /* Para que o link se comporte como um botão */
+  background-color: #4CAF50; /* Cor de fundo */
+  color: white; /* Cor do texto */
+  padding: 10px 15px; /* Espaçamento interno */
+  text-decoration: none; /* Remove sublinhado */
+  border-radius: 5px; /* Bordas arredondadas */
+  font-size: 16px; /* Tamanho da fonte */
+  position:absolute;
+  margin-top: -120px;
+}
+
+.btn-admin:hover {
+  background-color: #8e8e8e; /* Cor de fundo ao passar o mouse */
 }

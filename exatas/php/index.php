@@ -94,6 +94,11 @@ $nomeUsuario = $_SESSION['nome_completo'];
     
     <h1 class="titulo">AprendeFácil</h1>]
     <h1 class="name">Bem-vindo, <?php echo $nomeUsuario; ?>!</h1>
+    <?php if (isset($_SESSION['tipo_funcionario']) && $_SESSION['tipo_funcionario'] == 1): ?>
+    <a href="admin.php" class="btn-admin">ADMIN
+      
+</a>
+<?php endif; ?>
 
 <!-- Link de logout que abre a modal -->
 <a class="logout-link" href="#" onclick="abrirModal()">Logout</a>

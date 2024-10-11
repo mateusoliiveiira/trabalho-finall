@@ -45,7 +45,7 @@ function obterMateriaETermos($pdo, $id, $nome = '') {
 
 // Verificar se o ID da matéria foi passado
 if ($materia_id) {
-    $nome = $_POST['pesquisar_nome'] ?? '';
+    $nome = $_POST['pesquisar_nome'] ?? ''; // Pegando o termo de pesquisa
     $dados = obterMateriaETermos($pdo, $materia_id, $nome);
 
     // Verificar se a matéria existe
@@ -104,16 +104,18 @@ if ($materia_id) {
 </header>
 
 <main>
-    <!-- Formulário de pesquisa -->
-    <form action="lista.php?id=<?php echo htmlspecialchars($materia_id); ?>" method="POST" class="search-form">
-        <input type="hidden" name="id" value="<?php echo htmlspecialchars($materia_id); ?>">
-        <input type="text" id="nome" name="pesquisar_nome" placeholder="Digite o termo..." class="search-input">
-        <button type="submit">Pesquisar</button>
-    </form>
-
     <section>
         <div class="container">
             <h2 class="mt-5">Termos Cadastrados</h2>
+            
+            <!-- Formulário de pesquisa -->
+            <form method="POST" class="mb-4">
+                <div class="input-group">
+                    <input type="text" name="pesquisar_nome" class="form-control" placeholder="Pesquisar termo..." value="<?php echo htmlspecialchars($nome); ?>">
+                    <button class="btn btn-primary" type="submit">Pesquisar</button>
+                </div>
+            </form>
+            
             <section>
                 <div class="row">
                 <?php foreach ($dados['termos'] as $termo) { ?>
