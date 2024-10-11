@@ -20,12 +20,12 @@ class Termo {
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
 
-    public function salvar($nome, $materia_id, $oquee, $ondeusa, $exemplo, $imagem) {
+    public function salvar($nome, $materia_id, $oquee, $ondeusa, $exemplo, $formula) {
         $sql = "INSERT INTO termos (nome, materia_id, oquee, ondeusa, exemplo, formula) VALUES (?, ?, ?, ?, ?, ?)";
         $stmt = $this->pdo->prepare($sql);
-        $stmt->execute([$nome, $materia_id, $oquee, $ondeusa, $exemplo, $imagem]);
+        $stmt->execute([$nome, $materia_id, $oquee, $ondeusa, $exemplo, $formula]);
     }
-
+    
     public function buscarTermoPorId($id) {
         $sql = "SELECT * FROM termos WHERE id = ?";
         $stmt = $this->pdo->prepare($sql);

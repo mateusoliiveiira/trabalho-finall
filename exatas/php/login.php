@@ -16,17 +16,17 @@ if (isset($_POST['email']) && isset($_POST['senha'])) {
     if ($quantidade > 0) {
         $pdo = $sql_code->fetch(PDO::FETCH_ASSOC);
 
-        // Configura a sessão do usuário
+    
         $_SESSION['id_user'] = $pdo['id_user'];
         $_SESSION['nome_completo'] = $pdo['nome_completo'];
         $_SESSION['tipo_funcionario'] = $pdo['tipo_funcionario'];
 
-        // Verifica se o usuário é um administrador
+     
         if ($_SESSION['tipo_funcionario'] == 'admin') {
             header('Location: admin.php');
         } else {
-            // Redirecionar para uma página padrão para usuários comuns
-            header('Location: index.php'); // Altere para o nome da sua página de usuário
+            
+            header(header: 'Location: index.php'); 
         }
         exit(); // Adicione exit após o header para garantir que o script não continue executando
     } else {
