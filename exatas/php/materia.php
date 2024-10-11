@@ -5,7 +5,7 @@ $dbname = 'exatas';
 $username = 'root';
 $password = '';
 
-$materia_id = $_GET['id'];
+$materia_id = $_GET['id'] ?? null; // Usar null caso não exista o id
 
 try {
     $pdo = new PDO("mysql:host=$host;dbname=$dbname;charset=utf8", $username, $password);
@@ -14,22 +14,16 @@ try {
     die("Erro ao conectar: " . $e->getMessage());
 }
 
-// Recuperar os termos cadastrados
-$sql = 'SELECT * FROM termos WHERE materia_id = :materia_id';
-$stmt = $pdo->prepare($sql);
-$stmt->execute(['materia_id' => $materia_id]);
-$termos = $stmt->fetchAll(PDO::FETCH_ASSOC);
-
 // Função para buscar a matéria e seus termos associados pelo ID
 function obterMateriaETermos($pdo, $id, $nome = '') {
     // Buscar a matéria pelo ID
     $sqlMateria = 'SELECT * FROM materias WHERE id = :id';
     $stmtMateria = $pdo->prepare($sqlMateria);
-    
+
     // Buscar os termos associados a essa matéria
     $sqlTermos = 'SELECT * FROM termos WHERE materia_id = :id AND nome LIKE :nome';
     $stmtTermos = $pdo->prepare($sqlTermos);
-    
+
     try {
         // Executar a consulta da matéria
         $stmtMateria->execute(['id' => $id]);
@@ -50,11 +44,10 @@ function obterMateriaETermos($pdo, $id, $nome = '') {
 }
 
 // Verificar se o ID da matéria foi passado
-if (isset($_GET['id'])) {
-    $id = $_GET['id'];
-    $nome = isset($_POST['pesquisar_nome']) ? $_POST['pesquisar_nome'] : '';
-    $dados = obterMateriaETermos($pdo, $id, $nome);
-    
+if ($materia_id) {
+    $nome = $_POST['pesquisar_nome'] ?? '';
+    $dados = obterMateriaETermos($pdo, $materia_id, $nome);
+
     // Verificar se a matéria existe
     if (!$dados['materia']) {
         die("Matéria não encontrada.");
@@ -78,9 +71,9 @@ if (isset($_GET['id'])) {
 
 <header>
     <div class="cabecalho">
-        <a class="log" href="index.php"><img src="../img/digitar.png" width="100" height="100"></a>
+        <a class="log" href="index.php"><img src="../img/digitar.png" width="100" height="100" alt="Logo"></a>
     </div>
-    <div class ="adicionar">
+    <div class="adicionar">
         <h1 class="titulo margin-left">Matéria: <?php echo htmlspecialchars($dados['materia']['nome']); ?></h1> 
     </div>
 
@@ -89,31 +82,31 @@ if (isset($_GET['id'])) {
             margin-left: -30px;
         }
         .item {
-            flex-basis: calc(33.33% - 20px); /* Define cada item para ocupar 1/3 da largura */
-            margin: 10px; /* Margem ao redor de cada card */
-            padding: 15px; /* Espaço interno */
+            flex-basis: calc(33.33% - 20px);
+            margin: 10px;
+            padding: 15px;
             background-color: white;
-            color: black; /* Ajuste a cor do texto, se necessário */
-            border-radius: 10px; /* Bordas arredondadas */
-            box-shadow: 1px 5px 5px #ccc; /* Sombra para o card */
-            display: flex; /* Usar flexbox para alinhar os conteúdos */
-            flex-direction: column; /* Coluna para o conteúdo */
-            text-align: center; /* Centraliza o conteúdo dentro do card */
+            color: black;
+            border-radius: 10px;
+            box-shadow: 1px 5px 5px #ccc;
+            display: flex;
+            flex-direction: column;
+            text-align: center;
         }
         h3 {
-            margin: 0; /* Remove margem padrão */
+            margin: 0;
         }
         p {
-            text-align: left; /* Alinha o texto à esquerda */
-            margin: 5px 0; /* Margem vertical para espaçamento */
+            text-align: left;
+            margin: 5px 0;
         }
     </style>
 </header>
 
 <main>
     <!-- Formulário de pesquisa -->
-    <form action="lista.php?id=<?php echo htmlspecialchars($id); ?>" method="POST" class="search-form">
-        <input type="hidden" name="id" value="<?php echo htmlspecialchars($id); ?>">
+    <form action="lista.php?id=<?php echo htmlspecialchars($materia_id); ?>" method="POST" class="search-form">
+        <input type="hidden" name="id" value="<?php echo htmlspecialchars($materia_id); ?>">
         <input type="text" id="nome" name="pesquisar_nome" placeholder="Digite o termo..." class="search-input">
         <button type="submit">Pesquisar</button>
     </form>
@@ -122,31 +115,19 @@ if (isset($_GET['id'])) {
         <div class="container">
             <h2 class="mt-5">Termos Cadastrados</h2>
             <section>
-                
                 <div class="row">
-                    
-                <?php foreach ($termos as $termo) { ?>
+                <?php foreach ($dados['termos'] as $termo) { ?>
                     <div class="item">
-    <h3><?php echo htmlspecialchars($termo['nome']); ?></h3>
-    <p><strong>O que é:</strong> <?php echo htmlspecialchars($termo['oquee']); ?></p>
-    
-    <?php
-    // Verifica se a chave 'imagem' existe
-    if (isset($termo['imagem']) && !empty($termo['imagem'])) {
-        $imagem = htmlspecialchars($termo['imagem']);
-    } else {
-        $imagem = '../img/default.png'; // Caminho da imagem padrão
-    }
-    ?>
-    
-    <img src="<?php echo $imagem; ?>" alt="Imagem de <?php echo htmlspecialchars($termo['nome']); ?>" style="max-width: 100%; height: auto; margin: 10px 0;">
-    
-    <!-- Adicionando o link para mais detalhes do termo -->
-    <a href="detalhes_termo.php?id=<?php echo $termo['id']; ?>" class="btn btn-primary mt-3">Ver Detalhes</a>
-</div>
+                        <h3><?php echo htmlspecialchars($termo['nome']); ?></h3>
+                        <p><strong>O que é:</strong> <?php echo htmlspecialchars($termo['oquee']); ?></p>
 
-<?php } ?>
+                        <?php if (isset($termo['formula']) && !empty($termo['formula'])): ?>
+                            <img src="<?php echo htmlspecialchars($termo['formula']); ?>" alt="Imagem de <?php echo htmlspecialchars($termo['nome']); ?>" style="max-width: 100%; height: auto; margin: 10px 0;">
+                        <?php endif; ?>
 
+                        <a href="detalhes_termo.php?id=<?php echo $termo['id']; ?>" class="btn btn-primary mt-3">Ver Detalhes</a>
+                    </div>
+                <?php } ?>
                 </div>
             </section>
         </div>
@@ -154,7 +135,7 @@ if (isset($_GET['id'])) {
 
     <footer>
         <div class="container-botao-materia">
-            <a href="admin.php?id=<?php echo $id; ?>"> <button class="botao-materia">+ Adicionar Termo</button></a>
+            <a href="admin.php?id=<?php echo $materia_id; ?>"> <button class="botao-materia">+ Adicionar Termo</button></a>
         </div>
     </footer>
 </body>

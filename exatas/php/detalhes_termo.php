@@ -5,7 +5,7 @@ $dbname = 'exatas';
 $username = 'root';
 $password = '';
 
-$termo_id = $_GET['id'];
+$termo_id = $_GET['id'] ?? null; // Usar null caso não exista o id
 
 try {
     $pdo = new PDO("mysql:host=$host;dbname=$dbname;charset=utf8", $username, $password);
@@ -15,14 +15,18 @@ try {
 }
 
 // Recuperar os detalhes do termo pelo ID
-$sql = 'SELECT * FROM termos WHERE id = :id';
-$stmt = $pdo->prepare($sql);
-$stmt->execute(['id' => $termo_id]);
-$termo = $stmt->fetch(PDO::FETCH_ASSOC);
+if ($termo_id) {
+    $sql = 'SELECT * FROM termos WHERE id = :id';
+    $stmt = $pdo->prepare($sql);
+    $stmt->execute(['id' => $termo_id]);
+    $termo = $stmt->fetch(PDO::FETCH_ASSOC);
 
-// Verificar se o termo existe
-if (!$termo) {
-    die("Termo não encontrado.");
+    // Verificar se o termo existe
+    if (!$termo) {
+        die("Termo não encontrado.");
+    }
+} else {
+    die("ID do termo não fornecido.");
 }
 ?>
 
@@ -91,7 +95,13 @@ if (!$termo) {
         .btn:hover {
             opacity: 0.8;
         }
-    </style>
+
+        .imagem {
+            max-width: 100%; /* Para garantir que a imagem não ultrapasse a largura do container */
+            height: auto; /* Manter a proporção da imagem */
+            margin: 20px 0; /* Espaçamento em volta da imagem */
+        }
+</style>
     <div class="container">
         <h1>Detalhes do Termo: <?php echo htmlspecialchars($termo['nome']); ?></h1>
         <p><strong>O que é:</strong> <?php echo htmlspecialchars($termo['oquee']); ?></p>
@@ -99,8 +109,11 @@ if (!$termo) {
         <p><strong>Exemplo:</strong> <?php echo htmlspecialchars($termo['exemplo']); ?></p>
         <p><strong>Fórmula:</strong> <?php echo htmlspecialchars($termo['formula']); ?></p>
 
-        <!-- Adicionar outras informações conforme necessário -->
-        
+        <!-- Exibir a imagem, se existir -->
+        <?php if (!empty($termo['imagem'])): ?>
+            <img src="<?php echo htmlspecialchars($termo['imagem']); ?>" alt="Imagem de <?php echo htmlspecialchars($termo['nome']); ?>" class="imagem">
+        <?php endif; ?>
+
         <a href="editar_termo.php?id=<?php echo $termo['id']; ?>" class="btn btn-warning">Editar Termo</a>
         <a href="materia.php?id=<?php echo $termo['materia_id']; ?>" class="btn btn-secondary">Voltar</a>
     </div>
