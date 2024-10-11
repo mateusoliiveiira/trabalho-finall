@@ -36,20 +36,9 @@ if ($termo_id) {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Detalhes do Termo</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="../css/lista.css">
 </head>
 <body>
-<style>
-        body {
-            font-family: 'Jomhuria', sans-serif;
-            background-image: url('https://www.exemplo.com/sua-imagem.jpg'); /* Coloque a URL da sua imagem de fundo */
-            background-size: cover;
-            background-attachment: fixed;
-            background-position: center;
-            color: #fff;
-            margin: 0;
-            padding: 0;
-        }
 
         .container {
             background: rgba(0, 0, 0, 0.7); /* Fundo escuro semi-transparente */
@@ -117,5 +106,7 @@ if ($termo_id) {
         <a href="editar_termo.php?id=<?php echo $termo['id']; ?>" class="btn btn-warning">Editar Termo</a>
         <a href="materia.php?id=<?php echo $termo['materia_id']; ?>" class="btn btn-secondary">Voltar</a>
     </div>
+
+    <script src="../js/scriptlista.js"></script>
 </body>
 </html>

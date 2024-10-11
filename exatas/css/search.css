@@ -62,24 +62,6 @@ button[type="submit"]:hover {
     background-color: #0056b3;
 }
 
-/* Estilizando a tabela */
-.table {
-    margin-top: 30px;
-    background-color: rgba(255, 255, 255, 0.8);
-    border-radius: 5px;
-    overflow: hidden;
-}
-
-.table th {
-    background-color: #007bff;
-    color: white;
-    padding: 10px;
-}
-
-.table td {
-    padding: 10px;
-    border-bottom: 1px solid #ddd;
-}
 
 /* Estilizando o rodapé */
 footer {
@@ -104,4 +86,34 @@ footer {
 
 .botao-materia:hover {
     background-color: #218838;
+}
+
+.container {
+    margin: 0 auto;
+    max-width: 800px; /* Limita a largura do container */
+}
+
+.table {
+    width: 100%; /* Tabela ocupa toda a largura do container */
+    border-collapse: collapse; /* Remove espaços entre bordas */
+}
+
+.table th {
+    background-color: #007bff; /* Cor de fundo do cabeçalho */
+    color: white; /* Cor do texto no cabeçalho */
+    font-weight: bold; /* Negrito no cabeçalho */
+}
+
+.table th, .table td {
+    padding: 12px; /* Espaçamento interno nas células */
+    text-align: left; /* Alinha o texto à esquerda */
+    border-bottom: 1px solid #dee2e6; /* Linha de separação entre as linhas */
+}
+
+.table tr:hover {
+    background-color: #f1f1f1; /* Cor de fundo ao passar o mouse */
+}
+
+.table tbody tr:last-child td {
+    border-bottom: none; /* Remove a borda da última linha */
 }
