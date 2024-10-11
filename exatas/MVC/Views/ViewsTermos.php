@@ -5,17 +5,20 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Cadastro e Listagem de Termos</title>
 </head>
-<body>
-    <h1>Cadastro de Termos</h1>
+<body><form action="" method="POST" enctype="multipart/form-data">
+<h1>Cadastro de Termos</h1>
 
-    <?php if (isset($mensagem)) { ?>
-        <p><?php echo htmlspecialchars($mensagem); ?></p>
-    <?php } ?>
+<?php if (isset($mensagem)) { ?>
+    <p><?php echo htmlspecialchars($mensagem); ?></p>
+<?php } ?>
 
-    <form action="" method="POST" enctype="multipart/form-data">
+
+    <div class="form-group">
         <label for="nome">Nome do Termo:</label>
         <input type="text" id="nome" name="nome" required>
+    </div>
 
+    <div class="form-group">
         <label for="materia_id">Matéria:</label>
         <select id="materia_id" name="materia_id" required>
             <option value="">Selecione uma matéria</option>
@@ -29,22 +32,33 @@
                 <option value="">Nenhuma matéria encontrada</option>
             <?php } ?>
         </select>
+    </div>
 
+    <div class="form-group">
         <label for="oquee">O que é:</label>
         <textarea id="oquee" name="oquee" required></textarea>
+    </div>
 
+    <div class="form-group">
         <label for="ondeusa">Onde Usa:</label>
         <textarea id="ondeusa" name="ondeusa" required></textarea>
+    </div>
 
+    <div class="form-group">
         <label for="exemplo">Exemplo:</label>
         <textarea id="exemplo" name="exemplo" required></textarea>
+    </div>
 
+    <div class="form-group">
         <label for="imagem">Imagem:</label>
         <input type="file" id="imagem" name="imagem" accept="image/*" required>
+    </div>
 
-        <button type="submit">Cadastrar</button>
-    </form>
-
+    <button type="submit" class="botões-maneiros">Cadastrar</button>
+</form>
+    </div>
+</div>
+<div class="container">
     <h1>Lista de Termos</h1>
     <table border="1">
         <thead>
@@ -74,6 +88,6 @@
                 </tr>
             <?php } ?>
         </tbody>
-    </table>
+    </table></div>
 </body>
 </html>
