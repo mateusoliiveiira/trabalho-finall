@@ -12,14 +12,14 @@
         <p><?php echo htmlspecialchars($mensagem); ?></p>
     <?php } ?>
 
-    <form action="" method="POST">
+    <form action="" method="POST" enctype="multipart/form-data">
         <label for="nome">Nome do Termo:</label>
         <input type="text" id="nome" name="nome" required>
 
         <label for="materia_id">Matéria:</label>
         <select id="materia_id" name="materia_id" required>
             <option value="">Selecione uma matéria</option>
-            <?php if (isset($materias) && !empty($materias) && is_array($materias)) { ?>
+            <?php if (isset($materias) && !empty($materias)) { ?>
                 <?php foreach ($materias as $materia) { ?>
                     <option value="<?php echo htmlspecialchars($materia['id']); ?>">
                         <?php echo htmlspecialchars($materia['nome']); ?>
@@ -39,8 +39,8 @@
         <label for="exemplo">Exemplo:</label>
         <textarea id="exemplo" name="exemplo" required></textarea>
 
-        <label for="formula">Fórmula:</label>
-        <textarea id="formula" name="formula" required></textarea>
+        <label for="imagem">Imagem:</label>
+        <input type="file" id="imagem" name="imagem" accept="image/*" required>
 
         <button type="submit">Cadastrar</button>
     </form>

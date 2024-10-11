@@ -114,16 +114,17 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['nome'], $_POST['oquee
             </div>
 
             <div class="section">
-                <div class="title">Exemplo:</div>
-                <textarea id="exemplo" name="exemplo" required></textarea>
+            <div class="title">Imagem:</div>
+            <input type="file" id="imagem" name="imagem" accept="image/*" required>
             </div>
+            
+   
+   
+ 
+    <button type="submit">Cadastrar</button>
+</form>
 
-            <div class="section">
-                <div class="title">Fórmula (coloque um link de imagem, se houver):</div>
-                <textarea id="formula" name="formula" required></textarea>
-            </div>
-
-            <button type="submit">Adicionar</button>
+    
         </form>
     </div>
 </body>

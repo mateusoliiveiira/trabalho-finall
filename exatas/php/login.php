@@ -13,17 +13,22 @@ if (isset($_POST['email']) && isset($_POST['senha'])) {
 
     $quantidade = $sql_code->rowCount();
 
-
-
     if ($quantidade > 0) {
         $pdo = $sql_code->fetch(PDO::FETCH_ASSOC);
 
-
+        // Configura a sessão do usuário
         $_SESSION['id_user'] = $pdo['id_user'];
         $_SESSION['nome_completo'] = $pdo['nome_completo'];
         $_SESSION['tipo_funcionario'] = $pdo['tipo_funcionario'];
 
-        header('Location: index.php');
+        // Verifica se o usuário é um administrador
+        if ($_SESSION['tipo_funcionario'] == 'admin') {
+            header('Location: admin.php');
+        } else {
+            // Redirecionar para uma página padrão para usuários comuns
+            header('Location: index.php'); // Altere para o nome da sua página de usuário
+        }
+        exit(); // Adicione exit após o header para garantir que o script não continue executando
     } else {
         echo '
             <script>
@@ -36,16 +41,18 @@ if (isset($_POST['email']) && isset($_POST['senha'])) {
                 function exibirCaixaDialogo() {
                     var resposta = confirm("Algumas de suas credenciais estão incorretas, tente novamente!");
                     if (resposta == true) {
-                    
-                    } else {
+                        // Aqui você pode redirecionar ou executar outra ação
+                    }
                 }
-            }
                 window.onload = verificarCondicao;
             </script>
         ';
     }
 }
 ?>
+
+<!-- O restante do seu código para cadastro vai aqui -->
+
 
 <?php
 
