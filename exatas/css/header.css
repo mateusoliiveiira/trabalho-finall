@@ -22,7 +22,6 @@ header {
   }
 
   .titulo{
-    animation: text-color-change 5s infinite; /* Animação de cor RGB */
 
     text-align:center;
     font-size: 150px;
@@ -47,4 +46,52 @@ header {
 
 .adicionar  {
     margin-left: 20%;
+}/* Ajuste para telas menores, como tablets */
+@media (max-width: 768px) {
+    /* Reduzindo o tamanho da fonte do título */
+    .titulo {
+        font-size: 80px;
+    }
+
+    /* Ajustando a altura do cabeçalho */
+    header {
+        height: 100px;
+    }
+
+    /* Ajustando a margem da classe adicionar */
+    .adicionar {
+        margin-left: 10%;
+    }
+}
+
+/* Ajuste para telas muito pequenas, como smartphones */
+@media (max-width: 480px) {
+    /* Reduzindo ainda mais o tamanho da fonte do título */
+    .titulo {
+        font-size: 60px;
+        line-height: 1.2; /* Ajustando o espaçamento entre linhas */
+    }
+
+    /* Alterando a direção do cabeçalho para coluna e centralizando */
+    .cabecalho {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    /* Ajustando a margem do link no cabeçalho */
+    .cabecalho a {
+        margin: 0;
+    }
+
+    /* Centralizando a seção adicionar para telas menores */
+    .adicionar {
+        margin-left: 0;
+        text-align: center; /* Centraliza o conteúdo */
+    }
+
+    /* Ajustando a altura do cabeçalho para dispositivos menores */
+    header {
+        height: 80px;
+        padding: 10px; /* Adiciona um padding para o cabeçalho */
+    }
 }

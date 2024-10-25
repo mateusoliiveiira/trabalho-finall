@@ -106,14 +106,7 @@ footer {
     align-items: center;
 }
 
-/* Animações */
-@keyframes text-color-change {
-    0% { color: rgb(255, 0, 0); }
-    25% { color: rgb(0, 255, 0); }
-    50% { color: rgb(0, 0, 255); }
-    75% { color: rgb(255, 255, 0); }
-    100% { color: rgb(0, 255, 255); }
-}
+
 
 @keyframes background-color-change {
     0% { background-color: rgb(255, 255, 255); }
@@ -220,18 +213,14 @@ p {
 }
 .name {
   font-family: 'Montserrat', sans-serif;
-  color: #2c3e50;
+  color: #ffffff;
   font-size: 1.0rem;
   font-weight: 700;
   text-align: center;
   margin-top: 20px;
   padding: 10px;
-  border: 2px solid #3498db;
-  background-color: #ecf0f1;
-  border-radius: 10px;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   position: absolute;
-  top: 24px;
+  top: 27px;
   margin-left: 76%;
 }
 
@@ -328,4 +317,68 @@ p {
 
 .btn-admin:hover {
   background-color: #8e8e8e; /* Cor de fundo ao passar o mouse */
+}
+/* Responsividade para telas menores que 768px */
+@media (max-width: 768px) {
+  .titulo {
+      font-size: 60px;
+  }
+
+  .botao-materia {
+      font-size: 40px;
+      padding: 20px 0;
+  }
+
+  .botao-adicionar-materia {
+      font-size: 30px;
+      padding: 15px 0;
+      width: 70vw;
+  }
+
+  header {
+      height: 100px;
+  }
+
+  footer {
+      height: 100px;
+  }
+
+  .modal-content {
+      width: 90%;
+  }
+}
+
+/* Responsividade para telas menores que 480px */
+@media (max-width: 480px) {
+  .titulo {
+      font-size: 40px;
+  }
+
+  .botao-materia {
+      font-size: 30px;
+      padding: 15px 0;
+  }
+
+  .botao-adicionar-materia {
+      font-size: 20px;
+      padding: 10px 0;
+      width: 90vw;
+  }
+
+  .banner {
+      border-width: 20px 25px;
+  }
+
+  .btn-admin {
+      font-size: 14px;
+      padding: 8px 10px;
+  }
+
+  #sky, main, footer {
+      height: auto;
+  }
+
+  p, #welcome-message {
+      font-size: 18px;
+  }
 }
