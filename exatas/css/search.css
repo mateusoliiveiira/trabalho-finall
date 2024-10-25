@@ -16,7 +16,7 @@ header {
 }
 
 .cabecalho .log img {
-    max-width: 100%;
+    max-width: 60px;
     height: auto;
 }
 
