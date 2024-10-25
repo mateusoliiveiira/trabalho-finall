@@ -16,9 +16,8 @@ body {
 .container {
     max-width: 900px;
     margin: 30px auto;
-    background-color: #fff;
     padding: 20px;
-    border-radius: 8px;
+    border-radius: 2px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
@@ -31,7 +30,7 @@ h1 {
 table {
     width: 100%;
     border-collapse: collapse;
-    margin-bottom: 20px;
+    margin: 20px auto; /* Centraliza a tabela horizontalmente */
 }
 
 table, th, td {
@@ -44,7 +43,7 @@ th, td {
 }
 
 th {
-    background-color: #4CAF50;
+    background-color: #004AAD;
     color: white;
 }
 
@@ -94,4 +93,83 @@ select {
     border: 1px solid #ddd;
     border-radius: 4px;
     background-color: #fff;
+}
+
+h1 {
+    text-align: center;
+    margin: 20px 0;
+}
+
+form {
+    max-width: 1000px; /* Define a largura máxima do formulário */
+    margin: 0 auto; /* Centraliza o formulário */
+    padding: 0px 20px 20px 20px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+label {
+    display: block;
+    margin: 15px 0 5px;
+    font-weight: bold;
+}
+
+input[type="text"],
+textarea,
+select,
+input[type="file"] {
+    width: 100%; /* Largura total */
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box; /* Para incluir padding e border no tamanho total */
+}
+
+textarea {
+    resize: vertical; /* Permite redimensionar verticalmente */
+}
+
+
+/* Estilo dos títulos dos campos do formulário */
+label {
+    background-color: #004AAD; /* Fundo azul */
+    color: white; /* Texto em branco */
+    padding: 5px; /* Espaçamento interno */
+    border-radius: 1px; /* Bordas arredondadas */
+}
+
+button {
+    background-color: #004AAD; /* Cor azul */
+    color: #fff;
+    border: none;
+    padding: 10px 30px; /* Tamanho maior nos botões */
+    font-size: 16px;
+    border-radius: 2px; /* Bordas mais pontudas */
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease; /* Suaviza transições de cor e movimento */
+    text-transform: uppercase;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1); /* Sombra leve para destacar */
+    margin-top: 15px; /* Margem superior para separar do formulário */
+    display: block; /* Faz o botão se comportar como um bloco */
+    margin-left: auto; /* Margem automática à esquerda */
+    margin-right: auto; /* Margem automática à direita */
+}
+
+
+button:hover {
+    background-color: #003680; /* Azul mais escuro no hover */
+    transform: translateY(-3px); /* Leve movimento para cima no hover */
+}
+
+button:active {
+    background-color: #002350; /* Cor ainda mais escura ao clicar */
+    transform: translateY(1px); /* Botão desce levemente ao ser pressionado */
+}
+
+button a {
+    color: #fff;
+    text-decoration: none;
+}
+
+button a:hover {
+    color: #ddd;
 }

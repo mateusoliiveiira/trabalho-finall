@@ -22,6 +22,8 @@ header {
   }
 
   .titulo{
+    animation: text-color-change 5s infinite; /* Animação de cor RGB */
+
     text-align:center;
     font-size: 150px;
     color: rgb(255, 255, 255);
