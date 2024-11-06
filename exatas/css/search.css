@@ -120,3 +120,58 @@ footer {
     75% { color: rgb(255, 255, 0); }
     100% { color: rgb(0, 255, 255); }
 }
+/* Ajuste para telas menores, como tablets */
+@media (max-width: 768px) {
+    /* Reduzindo a largura do campo de pesquisa */
+    .search-input {
+        width: 100%;
+    }
+
+    /* Reduzindo padding dos botões */
+    button[type="submit"], .botao-materia {
+        padding: 8px 15px;
+    }
+
+    /* Ajustando margens para o container */
+    .container {
+        max-width: 100%;
+        padding: 0 10px;
+    }
+}
+
+/* Ajuste para telas muito pequenas, como smartphones */
+@media (max-width: 480px) {
+    /* Ajuste de tamanho do cabeçalho */
+    header {
+        padding: 10px;
+        font-size: 18px;
+    }
+
+    /* Redimensionamento do logotipo */
+    .cabecalho .log img {
+        max-width: 40px;
+    }
+
+    /* Ajuste no formulário de pesquisa */
+    .search-form {
+        flex-direction: column;
+        align-items: stretch;
+    }
+    
+    /* Ajuste do input de pesquisa para ocupar a largura total */
+    .search-input {
+        width: 100%;
+        margin-bottom: 10px;
+    }
+
+    /* Ajuste nos botões */
+    button[type="submit"], .botao-materia {
+        padding: 8px;
+        width: 100%;
+    }
+
+    /* Ajuste no rodapé */
+    footer {
+        font-size: 14px;
+    }
+}

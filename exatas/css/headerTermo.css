@@ -16,3 +16,18 @@
 body {
     padding-top: 80px; /* Adiciona espaço para o conteúdo não ficar escondido atrás do header */
 }
+/* Ajuste para telas menores, como tablets */
+@media (max-width: 768px) {
+    .header-dado {
+        font-size: 40px;
+        padding: 15px 0;
+    }
+}
+
+/* Ajuste para telas muito pequenas, como smartphones */
+@media (max-width: 480px) {
+    .header-dado {
+        font-size: 30px;
+        padding: 10px 0;
+    }
+}
