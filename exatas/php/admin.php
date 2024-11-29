@@ -184,7 +184,6 @@ if (isset($_POST['update_permissions'])) {
     </div>
 
     <a href="index.php">Ir Para o Index</a>
-    <a href="index.php">Ir Para o Index</a>
 </body>
 
 </html>

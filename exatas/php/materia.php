@@ -108,7 +108,7 @@ if ($materia_id) {
             <!-- Formulário de pesquisa -->
             <form method="POST" class="mb-4">
                 <div class="input-group">
-                    <input type="text" name="pesquisar_nome" class="form-control" placeholder="Pesquisar termo..." value="<?php echo htmlspecialchars($nome); ?>">
+                    <input type="text" name="pesquisar_nome" class="form-control" placeholder="Pesquisar termo..." style="font-size: 35px;" value="<?php echo htmlspecialchars($nome); ?>">
                     <button class="btn btn-primary" type="submit">Pesquisar</button>
                 </div>
             </form>
@@ -117,14 +117,12 @@ if ($materia_id) {
                 <div class="row">
                 <?php foreach ($dados['termos'] as $termo) { ?>
                     <div class="item">
-                        <h3><?php echo htmlspecialchars($termo['nome']); ?></h3>
-                        <p><strong>O que é:</strong> <?php echo htmlspecialchars($termo['oquee']); ?></p>
-
+                        <h3 class="titulo-termo"><?php echo htmlspecialchars($termo['nome']); ?></h3>
                         <?php if (isset($termo['formula']) && !empty($termo['formula'])): ?>
                             <img src="<?php echo htmlspecialchars($termo['formula']); ?>" alt="Imagem de <?php echo htmlspecialchars($termo['nome']); ?>" style="max-width: 100%; height: auto; margin: 10px 0;">
                         <?php endif; ?>
 
-                        <a href="detalhes_termo.php?id=<?php echo $termo['id']; ?>" class="btn btn-primary mt-3">Ver Detalhes</a>
+                        <a href="detalhes_termo.php?id=<?php echo $termo['id']; ?>" class="btn btn-primary btn-detalhes mt-3">Ver Detalhes</a>
                     </div>
                 <?php } ?>
                 </div>

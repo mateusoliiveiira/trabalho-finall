@@ -27,6 +27,7 @@ header {
     display: flex;
     justify-content: center;
     margin: 20px 0;
+
 }
 
 .search-input {
@@ -43,6 +44,7 @@ header {
 }
 
 button[type="submit"] {
+    font-size: 40px;
     padding: 10px 20px;
     border: none;
     background-color: #007bff;
@@ -70,6 +72,7 @@ footer {
 }
 
 .botao-materia {
+    font-size: 25px;
     padding: 10px 20px;
     border: none;
     background-color: #28a745;
@@ -162,6 +165,7 @@ footer {
     .search-input {
         width: 100%;
         margin-bottom: 10px;
+        font-size: 25px;
     }
 
     /* Ajuste nos botões */
@@ -174,4 +178,12 @@ footer {
     footer {
         font-size: 14px;
     }
+}
+
+.btn-detalhes {
+    font-size: 35px;
+}
+
+.titulo-termo {
+    font-size: 35px;
 }
